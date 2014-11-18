@@ -16,7 +16,6 @@ import java.util.Map;
 public abstract class BaseController<T extends Model> extends Controller {
     protected Map<String, Object> params = new HashMap<>();
     protected Page<T> pageRecords;
-    protected T model;
 
     /**
      * 查询并分页
@@ -43,10 +42,10 @@ public abstract class BaseController<T extends Model> extends Controller {
     /**
      * 普通Form跳转
      *
-     * @param attr
+     * @param attr 表单属性
      * @param dao
      */
-    protected void baseForm(String attr, T dao) {
+    protected void form(String attr, T dao) {
         Integer id = getParaToInt();
         if (id != null && id != 0) {    // 编辑
             Model model = dao.findById(id);
@@ -57,25 +56,36 @@ public abstract class BaseController<T extends Model> extends Controller {
     /**
      * 获取model前进行的处理
      */
-    protected abstract void doBeforeModel();
+    protected abstract void doAfterGetModel(T model);
 
     /**
-     * 保存前进行的处理，可以设置属性默认值
+     * 基础保存
+     * @param redirectUrl 重定向的url，为空则不做任何操作.(具有doAfterGetModel功能)
+     * @param modelClass
      */
-    protected abstract void doBeforeSave();
+    protected void saveOrUpdate(String redirectUrl, Class<T> modelClass) {
+        T model = getModel(modelClass);
+        doAfterGetModel(model);
+        saveOrUpdate(model);
+        redirectUrl(redirectUrl);
+    }
 
-    protected void baseSave(String redirectUrl, Class<T> modelClass) {
-        doBeforeModel();
-        model = getModel(modelClass);
-        doBeforeSave();
+    private void redirectUrl(String redirectUrl){
+        if (StringUtils.isNoneBlank(redirectUrl))
+            redirect(redirectUrl);
+    }
+
+    /**
+     * 基本的增加或更新封装（仅提供基础功能）
+     * @param model
+     */
+    protected void saveOrUpdate(T model){
         Integer id = model.getInt("id");
         if (id != null && id != 0) { // 更新操作
             model.update();
         } else {
             model.save();
         }
-        if (StringUtils.isNoneBlank(redirectUrl))
-            redirect(redirectUrl);
     }
 
     /**
@@ -83,9 +93,9 @@ public abstract class BaseController<T extends Model> extends Controller {
      *
      * @param dao
      * @param dbKit
-     * @param redirectUrl
+     * @param redirectUrl 重定向的url，为空则不做任何操作
      */
-    protected void baseDelete(T dao, DBKit<T> dbKit, String redirectUrl) {
+    protected void delete(T dao, DBKit<T> dbKit, String redirectUrl) {
         Integer id = getParaToInt();
         String ids = getPara("ids");
         if (id != null && id != 0) {
@@ -95,7 +105,6 @@ public abstract class BaseController<T extends Model> extends Controller {
                 dbKit.deleteAll(ids);
             }
         }
-        if (StringUtils.isNoneBlank(redirectUrl))
-            redirect(redirectUrl);
+        redirectUrl(redirectUrl);
     }
 }
