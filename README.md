@@ -8,4 +8,4 @@ wfinal-core
 # Thanks
 - java: 1.7
 - [jfinal](http://jfinal.com): 1.9
-- jfinal-ext: 1.9
+- jfinal-ext: 3.1.2
