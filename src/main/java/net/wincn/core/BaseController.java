@@ -56,8 +56,13 @@ public abstract class BaseController<T extends Model> extends Controller {
     /**
      * 获取model前进行的处理
      */
-    protected abstract void doAfterGetModel(T model);
+    protected abstract boolean doAfterGetModel(T model);
 
+    /**
+     * 没有保存成功要进行的处理（与doAfterGetModel相关）
+     * @param model
+     */
+    protected abstract void doIfNoSave(T model);
     /**
      * 基础保存
      * @param redirectUrl 重定向的url，为空则不做任何操作.(具有doAfterGetModel功能)
@@ -65,9 +70,12 @@ public abstract class BaseController<T extends Model> extends Controller {
      */
     protected void saveOrUpdate(String redirectUrl, Class<T> modelClass) {
         T model = getModel(modelClass);
-        doAfterGetModel(model);
-        saveOrUpdate(model);
-        redirectUrl(redirectUrl);
+        if(doAfterGetModel(model)) {
+            saveOrUpdate(model);
+            redirectUrl(redirectUrl);
+        }else{
+            doIfNoSave(model);
+        }
     }
 
     private void redirectUrl(String redirectUrl){
