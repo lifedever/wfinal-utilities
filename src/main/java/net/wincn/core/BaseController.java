@@ -78,6 +78,21 @@ public abstract class BaseController<T extends Model> extends Controller {
         }
     }
 
+    /**
+     * 基础保存
+     * @param redirectUrl 重定向的url，为空则不做任何操作.(具有doAfterGetModel功能)
+     * @param modelClass
+     */
+    protected void saveOrUpdate(String redirectUrl, Class<T> modelClass, String pkName) {
+        T model = getModel(modelClass);
+        if(doAfterGetModel(model)) {
+            saveOrUpdate(model, pkName);
+            redirectUrl(redirectUrl);
+        }else{
+            doIfNoSave(model);
+        }
+    }
+
     private void redirectUrl(String redirectUrl){
         if (StringUtils.isNoneBlank(redirectUrl))
             redirect(redirectUrl);
@@ -88,7 +103,11 @@ public abstract class BaseController<T extends Model> extends Controller {
      * @param model
      */
     protected void saveOrUpdate(T model){
-        Integer id = model.getInt("id");
+        saveOrUpdate(model, "id");
+    }
+
+    protected void saveOrUpdate(T model, String pkName) {
+        Integer id = model.getInt(pkName);
         if (id != null && id != 0) { // 更新操作
             model.update();
         } else {

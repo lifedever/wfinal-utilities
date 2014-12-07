@@ -49,11 +49,11 @@ public class DBKit<T extends Model> {
      * @return
      */
     public List<T> listRecord(String sort) {
-        return dao.find(String.format("select * from %s order by id " + sort, tableName));
+        return dao.find(String.format("select * from %s order by " + pkName + " " + sort, tableName));
     }
 
     public Page<T> pageRecord(int pageNumber) {
-        return dao.paginate(pageNumber, pageSize, "select * ", String.format("from %s order by id desc", tableName));
+        return dao.paginate(pageNumber, pageSize, "select * ", String.format("from %s order by " + pkName + " desc", tableName));
     }
 
     public Page<T> pageRecord(int pageNumber, String sqlExceptSelect, Object... paras) {
@@ -86,7 +86,7 @@ public class DBKit<T extends Model> {
                 }
             }
         }
-        sb.append(" order by id " + sort);
+        sb.append(" order by " + pkName + " " + sort);
         return pageRecord(pageNumber, sb.toString(), objects.toArray());
     }
 
@@ -97,8 +97,7 @@ public class DBKit<T extends Model> {
      */
     public void deleteAll(String ids) {
         for (String idStr : ids.split(",")) {
-            int id = Integer.parseInt(idStr);
-            dao.deleteById(id);
+            dao.deleteById(idStr);
         }
     }
 }
