@@ -19,6 +19,8 @@ public abstract class BaseController<T extends Model> extends Controller {
 
     /**
      * 查询并分页
+     * @param keyAttrName 查询表单“key”对应要查询的属性
+     * @param dbKit
      */
     protected void searchAndPaginate(String keyAttrName, DBKit<T> dbKit) {
         String key = getPara("key", "");
@@ -32,11 +34,30 @@ public abstract class BaseController<T extends Model> extends Controller {
 
     }
 
+    /**
+     * 返回所有记录，无查询功能
+     * @param dbKit
+     */
     protected void list(DBKit<T> dbKit) {
         String sort = getPara("sort", "desc");
         List<T> records = dbKit.listRecord(sort);
         setAttr("records", records);
         setAttr("sort", StrUtils.getReverseSort(sort));
+    }
+
+    /**
+     * 返回所有数据，带查询功能
+     * @param keyAttrName 查询表单“key”对应要查询的属性
+     * @param dbKit
+     */
+    protected void list(String keyAttrName, DBKit<T> dbKit) {
+        String key = getPara("key", "");
+        String sort = getPara("sort", "desc");
+        params.put(keyAttrName, key);
+        List<T> records = dbKit.search(params, sort);
+        setAttr("records", records);
+        setAttr("sort", StrUtils.getReverseSort(sort));
+        setAttr("key", key);
     }
 
     /**
@@ -54,7 +75,7 @@ public abstract class BaseController<T extends Model> extends Controller {
     }
 
     /**
-     * 获取model前进行的处理
+     * 获取model前进行的处理，如无处理，请默认返回true，否则不会保存数据库
      */
     protected abstract boolean doAfterGetModel(T model);
 
