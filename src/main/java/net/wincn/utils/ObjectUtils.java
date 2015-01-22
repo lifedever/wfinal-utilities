@@ -29,9 +29,6 @@ public class ObjectUtils {
      * @param value
      * @param clazz
      * @return
-     * @throws NoSuchMethodException
-     * @throws InvocationTargetException
-     * @throws IllegalAccessException
      */
     public static Object getRealTypeValue(String value, Class clazz) {
         try {

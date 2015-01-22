@@ -19,6 +19,9 @@ import java.util.Set;
  */
 public class DBKit<T extends Model> {
 
+    public static final String ASC = "asc";
+    public static final String DESC = "desc";
+
     private Model dao;
     private String tableName;
     private String pkName;
@@ -39,9 +42,17 @@ public class DBKit<T extends Model> {
         pkName = tableBind.pkName();
     }
 
+    public DBKit(T clazz, int pageSize) {
+        this.dao = clazz;
+        TableBind tableBind = TableUtils.getTableBind(clazz);
+        tableName = tableBind.tableName();
+        pkName = tableBind.pkName();
+        this.pageSize = pageSize;
+    }
+
     /**
      * 查询所有的数据
-     *
+     * @param sort 排序规则: DBKit.ASC or DBKit.DESC
      * @return
      */
     public List<T> listRecord(String sort) {
@@ -72,7 +83,7 @@ public class DBKit<T extends Model> {
      * 查询封装，带分页支持
      * @param pageNumber 页号
      * @param params 查询参数
-     * @param sort 排序：asc or desc
+     * @param sort 排序：DBKit.ASC or DBKit.DESC
      * @return
      */
     public Page<T> search(int pageNumber, Map<String, Object> params, String sort) {
@@ -108,7 +119,7 @@ public class DBKit<T extends Model> {
     /**
      * 查询封装，不分页，返回所有查询到的数据
      * @param params 查询参数
-     * @param sort 排序：asc or desc
+     * @param sort 排序：DBKit.ASC or DBKit.DESC
      * @return
      */
     public List<T> search(Map<String, Object> params, String sort) {
