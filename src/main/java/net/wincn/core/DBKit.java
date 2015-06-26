@@ -137,32 +137,33 @@ public class DBKit<T extends Model> {
 
         SqlExceptObj sqlExceptObj = new SqlExceptObj();
 
-        StringBuilder sb = new StringBuilder(select + " from " + tableName + " where 1=1 ");
-        List<Object> objects = new ArrayList<Object>();
-        Set<String> keySet = params.keySet();
-        for (String key : keySet) {
-            Object value = params.get(key);
-
-            /**
-             * 不等于
-             */
-            if (key.startsWith("ne_")) {
-                key = StringUtils.remove(key, "ne_");
-                sb.append("and " + key + " != ? ");
-                objects.add(value);
-            } else {
-                if (value instanceof String) {  // 字符串查询
-                    sb.append("and " + key + " like ? ");
-                    objects.add(StrUtils.getLikePara(value.toString()));
-                }
-
-                if (value instanceof Integer || value instanceof Long) {
-                    sb.append("and " + key + " = ? ");
+        StringBuilder sb = new StringBuilder(select + " from " + tableName + " t where 1=1 ");
+        List<Object> objects = new ArrayList<>();
+        if (params != null && params.size() > 0) {
+            Set<String> keySet = params.keySet();
+            for (String key : keySet) {
+                Object value = params.get(key);
+                /**
+                 * 不等于
+                 */
+                if (key.startsWith("ne_")) {
+                    key = StringUtils.remove(key, "ne_");
+                    sb.append("and t." + key + " != ? ");
                     objects.add(value);
+                } else {
+                    if (value instanceof String) {  // 字符串查询
+                        sb.append("and t." + key + " like ? ");
+                        objects.add(StrUtils.getLikePara(value.toString()));
+                    }
+
+                    if (value instanceof Integer || value instanceof Long) {
+                        sb.append("and t." + key + " = ? ");
+                        objects.add(value);
+                    }
                 }
             }
         }
-        sb.append(" order by " + pkName + " " + sort);
+        sb.append(" order by t." + pkName + " " + sort);
 
         sqlExceptObj.setSql(sb.toString());
         sqlExceptObj.setObjects(objects);
