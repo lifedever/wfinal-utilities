@@ -1,7 +1,5 @@
 package net.wincn.plugins.menuMapper;
 
-import com.jfinal.core.Controller;
-
 import java.util.HashMap;
 import java.util.Map;
 

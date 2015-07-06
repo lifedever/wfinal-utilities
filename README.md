@@ -13,4 +13,6 @@ wfinal-core
 # ChangeLogs
 ## 20150706 update
 1. 修改jfinal版本号为2.0, wfinal-core从此也进入2.0时代！
-2. 增加与前台结合的菜单插件MenuMapperPlugin，详细说明见wiki。
+2. 增加与前台结合的菜单插件MenuMapperPlugin
+
+关于框架的详细说明，请参见[wiki](https://github.com/gefangshuai/wfinal-core/wiki)
