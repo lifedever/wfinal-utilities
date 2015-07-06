@@ -4,16 +4,17 @@
 
     <groupId>io.github.gefangshuai</groupId>
     <artifactId>wfinal-core</artifactId>
-    <version>1.0.10</version>
+    <version>2.0.0</version>
     <packaging>jar</packaging>
 
     <name>wfinal-core</name>
     <url>http://maven.apache.org</url>
 
     <properties>
-        <jfinal>1.9</jfinal>
+        <jfinal>2.0</jfinal>
         <jfinal-ext>3.1.2</jfinal-ext>
         <jstl>1.2</jstl>
+        <wincn-commons>1.1</wincn-commons>
         <javax.servlet>2.5</javax.servlet>
         <java.version>1.7</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -60,7 +61,7 @@
         <dependency>
             <groupId>io.github.gefangshuai</groupId>
             <artifactId>wincn-commons</artifactId>
-            <version>1.1</version>
+            <version>${wincn-commons}</version>
             <type>pom</type>
         </dependency>
 

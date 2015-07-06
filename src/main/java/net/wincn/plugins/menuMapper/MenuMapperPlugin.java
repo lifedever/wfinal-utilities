@@ -1,0 +1,61 @@
+package net.wincn.plugins.menuMapper;
+
+import com.google.common.collect.Lists;
+import com.jfinal.core.Controller;
+import com.jfinal.ext.kit.ClassSearcher;
+import com.jfinal.log.Logger;
+import com.jfinal.plugin.IPlugin;
+import com.jfinal.plugin.activerecord.Model;
+
+import java.util.List;
+
+/**
+ * 菜单注入扫描插件, 需要结合 {@link MenuMapperInterceptor} 使用
+ * @see MenuMapperInterceptor
+ * @author gefangshuai
+ */
+public class MenuMapperPlugin implements IPlugin {
+    protected final Logger log = Logger.getLogger(getClass());
+
+    private List<Class<? extends Model>> excludeClasses = Lists.newArrayList();
+    private List<String> includeJars = Lists.newArrayList();
+    private boolean includeAllJarsInLib = false;
+    private List<String> scanPackages = Lists.newArrayList();
+
+    private String attribute;   // response 到前台的菜单对应属性
+    private static final String DEFAULT_MENU_ATTR = "menu"; // 默认菜单属性
+    public MenuMapperPlugin() {
+        this.attribute = DEFAULT_MENU_ATTR;
+    }
+
+    public MenuMapperPlugin(String attribute) {
+        this.attribute = attribute;
+    }
+
+    @Override
+    public boolean start() {
+        log.debug("----init MenuMapper Plugin!----");
+        MenuMapper.getInstance().setAttribute(attribute);
+        log.debug("MenuMapper attribute: " + attribute);
+        List<Class<? extends Controller>> controllerClasses = ClassSearcher.of(Controller.class).scanPackages(scanPackages).injars(includeJars).includeAllJarsInLib(includeAllJarsInLib).search();
+        Menu menu;
+        for (Class ctlClass : controllerClasses) {
+            if (excludeClasses.contains(ctlClass)) {
+                continue;
+            }
+            menu = (Menu) ctlClass.getAnnotation(Menu.class);
+            if (menu == null) {
+                continue;
+            } else {
+                MenuMapper.getInstance().getCtrlMap().put(ctlClass, menu);
+                log.debug("Add MenuMapper: ctlClass: " + ctlClass + " menu: " + menu.mapper());
+            }
+        }
+        return true;
+    }
+
+    @Override
+    public boolean stop() {
+        return true;
+    }
+}

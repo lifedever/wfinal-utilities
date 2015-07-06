@@ -2,7 +2,7 @@ package net.wincn.utils;
 
 import com.jfinal.ext.plugin.tablebind.TableBind;
 import com.jfinal.plugin.activerecord.Model;
-import net.wincn.core.TableInfo;
+import net.wincn.plugins.autoTableInfo.TableInfo;
 
 import java.lang.annotation.Annotation;
 import java.util.HashMap;

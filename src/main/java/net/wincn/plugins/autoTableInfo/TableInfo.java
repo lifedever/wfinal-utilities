@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package net.wincn.core;
+package net.wincn.plugins.autoTableInfo;
 
 import java.lang.annotation.*;
 

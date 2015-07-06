@@ -7,5 +7,10 @@ wfinal-core
 
 # Thanks
 - java: 1.7+
-- [jfinal](http://jfinal.com): 1.9
+- [jfinal](http://jfinal.com): 1.9+
 - jfinal-ext: 3.1.2
+
+# ChangeLogs
+## 20150706 update
+1. 修改jfinal版本号为2.0, wfinal-core从此也进入2.0时代！
+2. 增加与前台结合的菜单插件MenuMapperPlugin，详细说明见wiki。

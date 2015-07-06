@@ -1,4 +1,4 @@
-package net.wincn.core;
+package net.wincn.plugins.autoTableInfo;
 
 import com.google.common.collect.Lists;
 import com.jfinal.ext.kit.ClassSearcher;
