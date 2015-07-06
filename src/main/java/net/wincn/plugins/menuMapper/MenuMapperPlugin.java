@@ -7,6 +7,7 @@ import com.jfinal.log.Logger;
 import com.jfinal.plugin.IPlugin;
 import com.jfinal.plugin.activerecord.Model;
 
+import java.lang.reflect.Method;
 import java.util.List;
 
 /**
@@ -43,12 +44,20 @@ public class MenuMapperPlugin implements IPlugin {
             if (excludeClasses.contains(ctlClass)) {
                 continue;
             }
-            menu = (Menu) ctlClass.getAnnotation(Menu.class);
-            if (menu == null) {
-                continue;
-            } else {
-                MenuMapper.getInstance().getCtrlMap().put(ctlClass, menu);
-                log.debug("Add MenuMapper: ctlClass: " + ctlClass + " menu: " + menu.mapper());
+
+            Method[] methods = ctlClass.getMethods();
+            for (Method method : methods) {
+                menu = (Menu) method.getAnnotation(Menu.class);
+                if (menu == null) { // 方法中没有注解，则继续添加类注解
+                    menu = (Menu) ctlClass.getAnnotation(Menu.class);
+                    if (menu == null) {
+                        continue;
+                    } else {
+                        MenuMapper.getInstance().getCtrlMap().put(ctlClass, menu);
+                    }
+                }else {
+                    MenuMapper.getInstance().getCtrlMap().put(method, menu);
+                }
             }
         }
         return true;

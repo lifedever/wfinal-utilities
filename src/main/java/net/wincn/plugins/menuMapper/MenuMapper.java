@@ -21,14 +21,14 @@ public class MenuMapper {
     private MenuMapper() {
     }
 
-    private Map<Class<? extends Controller>, Menu> ctrlMap = new HashMap<>();
+    private Map<Object, Menu> ctrlMap = new HashMap<>();
     private String attribute;
 
-    public Map<Class<? extends Controller>, Menu> getCtrlMap() {
+    public Map<Object, Menu> getCtrlMap() {
         return ctrlMap;
     }
 
-    public void setCtrlMap(Map<Class<? extends Controller>, Menu> ctrlMap) {
+    public void setCtrlMap(Map<Object, Menu> ctrlMap) {
         this.ctrlMap = ctrlMap;
     }
 
