@@ -8,6 +8,8 @@
     <modules>
         <module>wfinal-plugin-menumapper</module>
         <module>wfinal-base</module>
+        <module>wfinal-model</module>
+        <module>wfinal-flash</module>
     </modules>
     <packaging>pom</packaging>
 

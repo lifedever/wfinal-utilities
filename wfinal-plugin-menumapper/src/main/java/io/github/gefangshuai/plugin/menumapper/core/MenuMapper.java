@@ -1,4 +1,4 @@
-package io.github.gefangshuai.plugin;
+package io.github.gefangshuai.plugin.menumapper.core;
 
 import java.util.HashMap;
 import java.util.Map;

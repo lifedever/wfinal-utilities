@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package io.github.gefangshuai.plugin.utils;
+package io.github.gefangshuai.plugin.menumapper.utils;
 
 import java.lang.reflect.Method;
 

@@ -1,4 +1,4 @@
-package io.github.gefangshuai.plugin.utils;
+package io.github.gefangshuai.plugin.menumapper.utils;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
