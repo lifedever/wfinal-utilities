@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package net.wincn.utils;
+package io.github.gefangshuai.plugin.utils;
 
 import java.lang.reflect.Method;
 

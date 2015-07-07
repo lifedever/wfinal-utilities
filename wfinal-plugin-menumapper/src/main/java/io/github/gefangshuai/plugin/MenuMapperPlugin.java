@@ -1,4 +1,4 @@
-package net.wincn.plugins.menuMapper;
+package io.github.gefangshuai.plugin;
 
 import com.google.common.collect.Lists;
 import com.jfinal.core.Controller;

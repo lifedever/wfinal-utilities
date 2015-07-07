@@ -1,4 +1,4 @@
-package net.wincn.plugins.menuMapper;
+package io.github.gefangshuai.plugin;
 
 import com.jfinal.aop.Interceptor;
 import com.jfinal.aop.Invocation;

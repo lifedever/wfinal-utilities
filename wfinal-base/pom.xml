@@ -1,0 +1,72 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>wfinal-core</artifactId>
+        <groupId>io.github.gefangshuai</groupId>
+        <version>2.1.0</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>wfinal-base</artifactId>
+    <packaging>jar</packaging>
+
+    <name>wfinal-base</name>
+    <url>http://maven.apache.org</url>
+
+    <properties>
+        <jfinal>2.0</jfinal>
+        <jfinal-ext>3.1.2</jfinal-ext>
+        <jstl>1.2</jstl>
+        <wincn-commons>1.1</wincn-commons>
+        <javax.servlet>2.5</javax.servlet>
+        <java.version>1.7</java.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.jfinal</groupId>
+            <artifactId>jfinal-ext</artifactId>
+            <version>${jfinal-ext}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>com.jfinal</groupId>
+                    <artifactId>jetty-server</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+        <dependency>
+            <groupId>com.jfinal</groupId>
+            <artifactId>jfinal</artifactId>
+            <version>${jfinal}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.jfinal</groupId>
+            <artifactId>cos</artifactId>
+            <version>26Dec2008</version>
+        </dependency>
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>druid</artifactId>
+            <version>1.0.9</version>
+        </dependency>
+        <dependency>
+            <groupId>jstl</groupId>
+            <artifactId>jstl</artifactId>
+            <version>${jstl}</version>
+        </dependency>
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>servlet-api</artifactId>
+            <version>${javax.servlet}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.github.gefangshuai</groupId>
+            <artifactId>wincn-commons</artifactId>
+            <version>${wincn-commons}</version>
+            <type>pom</type>
+        </dependency>
+
+    </dependencies>
+</project>

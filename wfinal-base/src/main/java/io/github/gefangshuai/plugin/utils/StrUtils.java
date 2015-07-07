@@ -1,4 +1,4 @@
-package net.wincn.utils;
+package io.github.gefangshuai.plugin.utils;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;

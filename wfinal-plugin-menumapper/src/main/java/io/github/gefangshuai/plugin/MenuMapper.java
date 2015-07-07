@@ -1,4 +1,4 @@
-package net.wincn.plugins.menuMapper;
+package io.github.gefangshuai.plugin;
 
 import java.util.HashMap;
 import java.util.Map;
