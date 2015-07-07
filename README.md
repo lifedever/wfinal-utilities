@@ -13,6 +13,9 @@ wfinal-core
 - jfinal-ext: 3.1.2
 
 # ChangeLogs
+## 20150707 update
+1. 修改版本号为2.0
+2. 改进maven依赖机制，使用中每个module独立依赖，不再同时依赖，详情见[wiki](https://github.com/gefangshuai/wfinal-core/wiki)
 ## 20150706 update
 1. 修改jfinal版本号为2.0, wfinal-core从此也进入2.0时代！
 2. 增加与前台结合的菜单插件MenuMapperPlugin
