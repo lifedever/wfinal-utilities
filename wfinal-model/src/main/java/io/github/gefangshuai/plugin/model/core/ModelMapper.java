@@ -53,6 +53,7 @@ public class ModelMapper {
                 modelMap.put(modelClass, tb);
             }
         }
+        logger.debug("model mapper inited: " + modelMap.size());
     }
 
     private Map<Class, TableBind> modelMap = new HashMap<>();

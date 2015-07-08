@@ -45,7 +45,8 @@ public class WModel<M extends Model> extends Model<M> {
      * @return
      */
     public boolean saveOrUpdate() {
-        if (get(pkName) == null) {
+        M m = findById(get(pkName));
+        if (m == null) {
             return save();
         } else {
             return update();
