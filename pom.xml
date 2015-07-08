@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>io.github.gefangshuai.wfinal</groupId>
-    <artifactId>wfinal-core</artifactId>
+    <artifactId>wfinal-utilities</artifactId>
     <version>2.1.0</version>
     <modules>
         <module>wfinal-plugin-menumapper</module>
@@ -13,7 +13,7 @@
     </modules>
     <packaging>pom</packaging>
 
-    <name>wfinal-core</name>
+    <name>wfinal-utilities</name>
     <url>https://github.com/gefangshuai</url>
     <properties>
         <java.version>1.7</java.version>

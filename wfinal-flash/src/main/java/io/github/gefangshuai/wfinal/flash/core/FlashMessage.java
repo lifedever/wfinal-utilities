@@ -1,7 +1,12 @@
 package io.github.gefangshuai.wfinal.flash.core;
 
 /**
- * 消息类
+ * 消息类，定义了四个页面预定义参数
+ * <br/>
+ * <p><code>flash_success</code> 成功消息</p>
+ * <p><code>flash_info</code> 信息消息</p>
+ * <p><code>flash_warning</code> 警告消息</p>
+ * <p><code>flash_error</code> 错误消息</p>
  * Created by gefangshuai on 2015-03-22-0022.
  */
 public class FlashMessage {
