@@ -14,7 +14,7 @@
     <packaging>pom</packaging>
 
     <name>wfinal-utilities</name>
-    <url>https://github.com/gefangshuai</url>
+    <url>https://github.com/gefangshuai/wfinal-utilities</url>
     <properties>
         <java.version>1.7</java.version>
     </properties>

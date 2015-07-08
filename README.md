@@ -10,7 +10,7 @@ wfinal-utilities
 **有任何疑问请在issues中留言！**
 # Thanks
 - java: 1.7+
-- [jfinal](http://jfinal.com): 1.9+
+- [jfinal](http://jfinal.com): 2.0
 - jfinal-ext: 3.1.2
 
 # ChangeLogs
