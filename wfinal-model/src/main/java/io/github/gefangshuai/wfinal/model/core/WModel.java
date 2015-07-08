@@ -1,4 +1,4 @@
-package io.github.gefangshuai.plugin.model.core;
+package io.github.gefangshuai.wfinal.model.core;
 
 import com.jfinal.ext.plugin.tablebind.TableBind;
 import com.jfinal.plugin.activerecord.Model;

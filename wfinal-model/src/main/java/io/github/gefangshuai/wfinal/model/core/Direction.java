@@ -1,4 +1,4 @@
-package io.github.gefangshuai.plugin.model.core;
+package io.github.gefangshuai.wfinal.model.core;
 
 /**
  * Created by gefangshuai on 2015/7/7.

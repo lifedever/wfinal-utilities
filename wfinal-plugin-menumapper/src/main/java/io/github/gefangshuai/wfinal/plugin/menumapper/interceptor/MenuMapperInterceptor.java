@@ -1,12 +1,12 @@
-package io.github.gefangshuai.plugin.menumapper.interceptor;
+package io.github.gefangshuai.wfinal.plugin.menumapper.interceptor;
 
 import com.jfinal.aop.Interceptor;
 import com.jfinal.aop.Invocation;
 import com.jfinal.core.Controller;
 import com.jfinal.log.Logger;
-import io.github.gefangshuai.plugin.menumapper.core.Menu;
-import io.github.gefangshuai.plugin.menumapper.core.MenuMapper;
-import io.github.gefangshuai.plugin.menumapper.MenuMapperPlugin;
+import io.github.gefangshuai.wfinal.plugin.menumapper.core.Menu;
+import io.github.gefangshuai.wfinal.plugin.menumapper.core.MenuMapper;
+import io.github.gefangshuai.wfinal.plugin.menumapper.MenuMapperPlugin;
 
 import java.lang.reflect.Method;
 
