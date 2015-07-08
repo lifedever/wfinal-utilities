@@ -9,4 +9,14 @@ public class FlashMessage {
     public static final String FLASH_INFO = "flash_info";
     public static final String FLASH_WARNING = "flash_warning";
     public static final String FLASH_ERROR = "flash_error";
+
+    private static String customMessage;
+
+    public static String getCustomMessage() {
+        return customMessage;
+    }
+
+    public static void setCustomMessage(String customMessage) {
+        FlashMessage.customMessage = customMessage;
+    }
 }

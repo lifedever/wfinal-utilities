@@ -10,31 +10,63 @@ import javax.servlet.http.HttpSession;
  */
 public class FlashMessageUtils {
 
+    /**
+     * 设置成功返回的消息
+     * @param controller
+     * @param message
+     */
     public static void setSuccessMessage(Controller controller, String message){
-        controller.getSession().setAttribute(FlashMessage.FLASH_SUCCESS, message);
+        controller.setSessionAttr(FlashMessage.FLASH_SUCCESS, message);
     }
 
+    /**
+     * 设置信息消息
+     * @param controller
+     * @param message
+     */
     public static void setInfoMessage(Controller controller, String message){
-        controller.getSession().setAttribute(FlashMessage.FLASH_INFO, message);
+        controller.setSessionAttr(FlashMessage.FLASH_INFO, message);
     }
 
+    /**
+     * 设置错误消息
+     * @param controller
+     * @param message
+     */
     public static void setErrorMessage(Controller controller, String message){
-        controller.getSession().setAttribute(FlashMessage.FLASH_ERROR, message);
+        controller.setSessionAttr(FlashMessage.FLASH_ERROR, message);
     }
 
+    /**
+     * 设置警告消息
+     * @param controller
+     * @param message
+     */
     public static void setWarningMessage(Controller controller, String message){
-        controller.getSession().setAttribute(FlashMessage.FLASH_WARNING, message);
+        controller.setSessionAttr(FlashMessage.FLASH_WARNING, message);
+    }
+
+    /**
+     * 设置自定义消息
+     * @param controller
+     * @param attribute
+     * @param message
+     */
+    public static void setMessage(Controller controller, String attribute, String message) {
+        FlashMessage.setCustomMessage(attribute);
+        controller.setSessionAttr(attribute, message);
     }
 
     /**
      * 清楚session中的所有Flash消息
-     * @param session
+     * @param controller
      */
-    public static void clearAll(HttpSession session){
-        session.removeAttribute(FlashMessage.FLASH_SUCCESS);
-        session.removeAttribute(FlashMessage.FLASH_WARNING);
-        session.removeAttribute(FlashMessage.FLASH_INFO);
-        session.removeAttribute(FlashMessage.FLASH_ERROR);
+    public static void clearAll(Controller controller){
+        controller.removeSessionAttr(FlashMessage.FLASH_SUCCESS);
+        controller.removeSessionAttr(FlashMessage.FLASH_WARNING);
+        controller.removeSessionAttr(FlashMessage.FLASH_INFO);
+        controller.removeSessionAttr(FlashMessage.FLASH_ERROR);
+        controller.removeSessionAttr(FlashMessage.getCustomMessage());
     }
 
 }
