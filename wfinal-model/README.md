@@ -5,9 +5,9 @@
 其中WModel中主要扩展了`findAll`和`pageRecord`两中查询方式，相关参数有：
 
 1. **不带参**: 直接查询所有记录，`select * from tableName` 或分页。
-2. **QueryMap**: 查询参数封装
-2. **Sort**: 排序封装
-3. **PageRequest**: 分页参数封装，仅适用于分页查询`pageRecord`
+2. **[QueryMap](https://github.com/gefangshuai/wfinal-utilities/wiki/WModel%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E-QueryMap)**: 查询参数封装
+2. **[Sort](https://github.com/gefangshuai/wfinal-utilities/wiki/WModel%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E-Sort)**: 排序封装
+3. **[PageRequest](https://github.com/gefangshuai/wfinal-utilities/wiki/WModel%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E-PageRequest)**: 分页参数封装，仅适用于分页查询`pageRecord`
 
 # 使用方法
 这里主要介绍一下分页的查询方式`pageRecord`，`findAll`功能类似，相对简单。
@@ -45,3 +45,9 @@ Page<Book> bookPage = Book.dao.pageRecord(pageRequest, queryMap, new Sort("title
 ```
 
 **搞定！**
+
+# 继续延伸
+* **[QueryParam](https://github.com/gefangshuai/wfinal-utilities/wiki/WModel%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E-QueryParam)**
+* **[QueryMap](https://github.com/gefangshuai/wfinal-utilities/wiki/WModel%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E-QueryMap)**
+* **[Sort](https://github.com/gefangshuai/wfinal-utilities/wiki/WModel%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E-Sort)**
+* **[PageRequest](https://github.com/gefangshuai/wfinal-utilities/wiki/WModel%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E-PageRequest)**
