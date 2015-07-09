@@ -1,7 +1,7 @@
 wfinal-utilities
 ===========
 
-基于jfinal框架的项目基础包
+基于jfinal框架的扩展包
 
 目的是为了更加简化Jfinal开发流程，定义通用的controller和db
 
@@ -15,3 +15,5 @@ wfinal-utilities
 - java: 1.7+
 - [jfinal](http://jfinal.com): 2.0
 - jfinal-ext: 3.1.2
+
+<strong style="color: red">框架持续更新中，敬请关注^_^!</strong>
