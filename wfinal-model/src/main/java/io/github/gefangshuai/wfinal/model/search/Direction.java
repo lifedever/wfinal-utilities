@@ -1,4 +1,4 @@
-package io.github.gefangshuai.wfinal.model.core;
+package io.github.gefangshuai.wfinal.model.search;
 
 /**
  * Created by gefangshuai on 2015/7/7.

@@ -2,6 +2,10 @@ package io.github.gefangshuai.wfinal.model.core;
 
 import com.jfinal.ext.plugin.tablebind.TableBind;
 import com.jfinal.plugin.activerecord.Model;
+import com.jfinal.plugin.activerecord.Page;
+import io.github.gefangshuai.wfinal.model.search.PageRequest;
+import io.github.gefangshuai.wfinal.model.search.QueryMap;
+import io.github.gefangshuai.wfinal.model.search.Sort;
 
 import java.util.List;
 
@@ -59,22 +63,80 @@ public class WModel<M extends Model> extends Model<M> {
      * @return
      */
     public List<M> findAll() {
-        return find("select * from " + tableName);
+        return find(new QueryMap().getQuerySql(this));
     }
 
     /**
      * 查询所有记录
+     * @param queryMap 查询参数
+     * @return
+     */
+    public List<M> findAll(QueryMap queryMap) {
+        return find(queryMap.getQuerySql(this));
+
+    }
+    /**
+     * 查询所有记录，带排序
      *
      * @param sort 排序
      * @return
      */
     public List<M> findAll(Sort sort) {
-        StringBuilder sb = new StringBuilder("select * from " + tableName);
-        sb.append(" order by");
-        sb.append(" ");
-        sb.append(sort.getColumnName());
-        sb.append(" ");
-        sb.append(sort.getDirection().getDirection());
-        return find(sb.toString());
+        return find(new QueryMap().getQuerySql(this, sort));
     }
+
+    /**
+     * 查询所有记录，带排序
+     *
+     * @param sort 排序
+     * @return
+     */
+    public List<M> findAll(QueryMap queryMap, Sort sort) {
+        return find(queryMap.getQuerySql(this, sort));
+    }
+
+    /**
+     * 分页查询
+     *
+     * @param pageRequest
+     * @param select
+     * @param sqlExceptSelect
+     * @param paras
+     * @return
+     */
+    public Page<M> pageRecord(PageRequest pageRequest, String select, String sqlExceptSelect, Object... paras) {
+        return paginate(pageRequest.getPageNumber(), pageRequest.getPageSize(), select, sqlExceptSelect, paras);
+    }
+
+    /**
+     * 分页查询所有记录
+     * @param pageRequest
+     * @return
+     */
+    public Page<M> pageRecord(PageRequest pageRequest) {
+        return paginate(pageRequest.getPageNumber(), pageRequest.getPageSize(), "select * ", getSqlExceptSelect(null));
+    }
+
+
+    /**
+     * 分页查询所有记录，带排序
+     *
+     * @param pageRequest
+     * @param sort
+     * @return
+     */
+    public Page<M> pageRecord(PageRequest pageRequest, Sort sort) {
+        return paginate(pageRequest.getPageNumber(), pageRequest.getPageSize(), "select * ", getSqlExceptSelect(sort));
+    }
+
+    /* private method below */
+
+    private String getSqlExceptSelect(Sort sort) {
+        if (sort == null) {
+            return " from " + tableName;
+        }else {
+            return " from " + tableName + " order by " + sort.getColumnName() + " " + sort.getDirection().getDirection();
+        }
+    }
+
 }

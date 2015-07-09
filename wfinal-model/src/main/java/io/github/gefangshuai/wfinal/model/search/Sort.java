@@ -1,4 +1,4 @@
-package io.github.gefangshuai.wfinal.model.core;
+package io.github.gefangshuai.wfinal.model.search;
 
 /**
  * 排序封装

@@ -9,6 +9,8 @@ wfinal-utilities
 
 **有任何疑问请在[issues](https://github.com/gefangshuai/wfinal-utilities/issues)中留言！**
 
+测试项目：
+[https://github.com/gefangshuai/baseFinal-noshiro](https://github.com/gefangshuai/baseFinal-noshiro);
 # Thanks
 - java: 1.7+
 - [jfinal](http://jfinal.com): 2.0
