@@ -1,7 +1,6 @@
 package io.github.gefangshuai.wfinal.model.search;
 
 import com.jfinal.log.Logger;
-import com.jfinal.plugin.activerecord.Model;
 import io.github.gefangshuai.wfinal.model.core.WModel;
 import org.apache.commons.lang3.StringUtils;
 
@@ -63,5 +62,15 @@ public class QueryMap {
         return sb.toString();
     }
 
-
+    /**
+     * 获取所有查询值
+     * @return
+     */
+    public Object[] getParas() {
+        List<Object> paramList = new ArrayList<>();
+        for (QueryParam queryParam : queryParams) {
+            paramList.add(queryParam.getValue());
+        }
+        return paramList.toArray();
+    }
 }

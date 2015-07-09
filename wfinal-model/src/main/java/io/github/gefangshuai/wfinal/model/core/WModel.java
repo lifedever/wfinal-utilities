@@ -72,7 +72,7 @@ public class WModel<M extends Model> extends Model<M> {
      * @return
      */
     public List<M> findAll(QueryMap queryMap) {
-        return find(queryMap.getQuerySql(this));
+        return find(queryMap.getQuerySql(this), queryMap.getParas());
 
     }
     /**
@@ -92,7 +92,7 @@ public class WModel<M extends Model> extends Model<M> {
      * @return
      */
     public List<M> findAll(QueryMap queryMap, Sort sort) {
-        return find(queryMap.getQuerySql(this, sort));
+        return find(queryMap.getQuerySql(this, sort), queryMap.getParas());
     }
 
     /**
