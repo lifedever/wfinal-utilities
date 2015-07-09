@@ -27,8 +27,6 @@ public class WModel<M extends Model> extends Model<M> {
 
     /**
      * 获取当前表主键
-     *
-     * @return
      */
     public String getPkName() {
         return pkName;
@@ -36,8 +34,6 @@ public class WModel<M extends Model> extends Model<M> {
 
     /**
      * 获取当前表名
-     *
-     * @return
      */
     public String getTableName() {
         return tableName;
@@ -45,8 +41,6 @@ public class WModel<M extends Model> extends Model<M> {
 
     /**
      * 自动判断保存还是更新
-     *
-     * @return
      */
     public boolean saveOrUpdate() {
         M m = findById(get(pkName));
@@ -59,8 +53,6 @@ public class WModel<M extends Model> extends Model<M> {
 
     /**
      * 查询所有记录
-     *
-     * @return
      */
     public List<M> findAll() {
         return find(new QueryMap(null).getQuerySql(this));
@@ -68,8 +60,6 @@ public class WModel<M extends Model> extends Model<M> {
 
     /**
      * 查询所有记录
-     * @param queryMap 查询参数
-     * @return
      */
     public List<M> findAll(QueryMap queryMap) {
         return find(queryMap.getQuerySql(this), queryMap.getParas());
@@ -77,9 +67,6 @@ public class WModel<M extends Model> extends Model<M> {
     }
     /**
      * 查询所有记录，带排序
-     *
-     * @param sort 排序
-     * @return
      */
     public List<M> findAll(Sort sort) {
         return find(new QueryMap(null).getQuerySql(this, sort));
@@ -87,56 +74,46 @@ public class WModel<M extends Model> extends Model<M> {
 
     /**
      * 查询所有记录，带排序
-     *
-     * @param sort 排序
-     * @return
      */
     public List<M> findAll(QueryMap queryMap, Sort sort) {
         return find(queryMap.getQuerySql(this, sort), queryMap.getParas());
     }
 
+
+    /**
+     * 分页查询所有记录
+     */
+    public Page<M> pageRecord(PageRequest pageRequest) {
+        return paginate(pageRequest.getPageNumber(), pageRequest.getPageSize(), "select * ", new QueryMap(null).getSqlExceptSelect(null, this));
+    }
+
+    /**
+     * 分页查询所有记录，带排序
+     */
+    public Page<M> pageRecord(PageRequest pageRequest, Sort sort) {
+        return paginate(pageRequest.getPageNumber(), pageRequest.getPageSize(), "select * ", new QueryMap(null).getSqlExceptSelect(null, this, sort));
+    }
+
+    /**
+     * 分页查询记录，带排序
+     */
+    public Page<M> pageRecord(PageRequest pageRequest, QueryMap queryMap) {
+        return paginate(pageRequest.getPageNumber(), pageRequest.getPageSize(), "select * ", queryMap.getSqlExceptSelect(null, this), queryMap.getParas());
+    }
+
+    /**
+     * 分页查询记录，带排序
+     */
+    public Page<M> pageRecord(PageRequest pageRequest, QueryMap queryMap, Sort sort) {
+        return paginate(pageRequest.getPageNumber(), pageRequest.getPageSize(), "select * ", queryMap.getSqlExceptSelect(null, this, sort), queryMap.getParas());
+    }
+
     /**
      * 分页查询
-     *
-     * @param pageRequest
-     * @param select
-     * @param sqlExceptSelect
-     * @param paras
-     * @return
      */
     public Page<M> pageRecord(PageRequest pageRequest, String select, String sqlExceptSelect, Object... paras) {
         return paginate(pageRequest.getPageNumber(), pageRequest.getPageSize(), select, sqlExceptSelect, paras);
     }
 
-    /**
-     * 分页查询所有记录
-     * @param pageRequest
-     * @return
-     */
-    public Page<M> pageRecord(PageRequest pageRequest) {
-        return paginate(pageRequest.getPageNumber(), pageRequest.getPageSize(), "select * ", getSqlExceptSelect(null));
-    }
-
-
-    /**
-     * 分页查询所有记录，带排序
-     *
-     * @param pageRequest
-     * @param sort
-     * @return
-     */
-    public Page<M> pageRecord(PageRequest pageRequest, Sort sort) {
-        return paginate(pageRequest.getPageNumber(), pageRequest.getPageSize(), "select * ", getSqlExceptSelect(sort));
-    }
-
-    /* private method below */
-
-    private String getSqlExceptSelect(Sort sort) {
-        if (sort == null) {
-            return " from " + tableName;
-        }else {
-            return " from " + tableName + " order by " + sort.getColumnName() + " " + sort.getDirection().getDirection();
-        }
-    }
 
 }

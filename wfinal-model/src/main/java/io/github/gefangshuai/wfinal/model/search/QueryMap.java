@@ -76,7 +76,7 @@ public class QueryMap {
     }
 
     public String getQuerySql(WModel model, Sort sort) {
-        String sql = getQuerySql(model) + " order by " + sort.getColumnName() + " " + sort.getDirection().getDirection();
+        String sql = appendSort(getQuerySql(model), sort);
         logger.debug("query sql: " + sql);
         return sql;
     }
@@ -102,6 +102,12 @@ public class QueryMap {
         return sb.toString();
     }
 
+    public String getSqlExceptSelect(String select, WModel model, Sort sort) {
+        String sql = appendSort(getSqlExceptSelect(select, model), sort);
+        logger.debug("query sql: " + sql);
+        return sql;
+    }
+
     /**
      * 获取所有查询值
      *
@@ -113,5 +119,10 @@ public class QueryMap {
             paramList.add(queryParam.getValue());
         }
         return paramList.toArray();
+    }
+
+    /* private method below */
+    private String appendSort(String sql, Sort sort) {
+        return sql + " order by " + sort.getColumnName() + " " + sort.getDirection().getDirection();
     }
 }
