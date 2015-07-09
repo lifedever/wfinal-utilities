@@ -28,17 +28,17 @@ wfinal-utilities
 <dependency>
     <groupId>io.github.gefangshuai.wfinal</groupId>
     <artifactId>wfinal-model</artifactId>
-    <version>2.1.0</version>
+    <version>2.1.1</version>
 </dependency>
 <dependency>
     <groupId>io.github.gefangshuai.wfinal</groupId>
     <artifactId>wfinal-plugin-menumapper</artifactId>
-    <version>2.1.0</version>
+    <version>2.1.1</version>
 </dependency>
 <dependency>
     <groupId>io.github.gefangshuai.wfinal</groupId>
     <artifactId>wfinal-flash</artifactId>
-    <version>2.1.0</version>
+    <version>2.1.1</version>
 </dependency>
 ```
 
