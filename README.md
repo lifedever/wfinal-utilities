@@ -47,4 +47,5 @@ wfinal-utilities
 - [jfinal](http://jfinal.com): 2.0
 - jfinal-ext: 3.1.2
 
+开发计划：[trello](https://trello.com/b/E5DipJOj/wfinal)
 <strong style="color: red">框架持续更新中，敬请关注^_^!</strong>
