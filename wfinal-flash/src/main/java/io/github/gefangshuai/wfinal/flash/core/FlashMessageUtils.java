@@ -19,6 +19,11 @@ public class FlashMessageUtils {
         controller.setSessionAttr(FlashMessage.FLASH_SUCCESS, message);
     }
 
+    public static void redirectSuccessMessage(Controller controller, String url, String message) {
+        setSuccessMessage(controller, message);
+        controller.redirect(url);
+    }
+
     /**
      * 设置信息消息
      * @param controller
@@ -26,6 +31,11 @@ public class FlashMessageUtils {
      */
     public static void setInfoMessage(Controller controller, String message){
         controller.setSessionAttr(FlashMessage.FLASH_INFO, message);
+    }
+
+    public static void redirectInfoMessage(Controller controller, String url, String message) {
+        setInfoMessage(controller, message);
+        controller.redirect(url);
     }
 
     /**
@@ -37,6 +47,11 @@ public class FlashMessageUtils {
         controller.setSessionAttr(FlashMessage.FLASH_ERROR, message);
     }
 
+    public static void redirectErrorMessage(Controller controller, String url, String message) {
+        setErrorMessage(controller, message);
+        controller.redirect(url);
+    }
+
     /**
      * 设置警告消息
      * @param controller
@@ -45,6 +60,12 @@ public class FlashMessageUtils {
     public static void setWarningMessage(Controller controller, String message){
         controller.setSessionAttr(FlashMessage.FLASH_WARNING, message);
     }
+
+    public static void redirectWarningMessage(Controller controller, String url, String message) {
+        setWarningMessage(controller, message);
+        controller.redirect(url);
+    }
+
 
     /**
      * 设置自定义消息
@@ -55,6 +76,11 @@ public class FlashMessageUtils {
     public static void setMessage(Controller controller, String attribute, String message) {
         FlashMessage.setCustomMessage(attribute);
         controller.setSessionAttr(attribute, message);
+    }
+
+    public static void redirect(Controller controller, String url, String attribute, String message) {
+        setMessage(controller, attribute, message);
+        controller.redirect(url);
     }
 
     /**
