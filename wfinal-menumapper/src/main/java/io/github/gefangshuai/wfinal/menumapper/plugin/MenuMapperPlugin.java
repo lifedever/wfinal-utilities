@@ -1,4 +1,4 @@
-package io.github.gefangshuai.wfinal.plugin.menumapper;
+package io.github.gefangshuai.wfinal.menumapper.plugin;
 
 import com.google.common.collect.Lists;
 import com.jfinal.core.Controller;
@@ -6,9 +6,9 @@ import com.jfinal.ext.kit.ClassSearcher;
 import com.jfinal.log.Logger;
 import com.jfinal.plugin.IPlugin;
 import com.jfinal.plugin.activerecord.Model;
-import io.github.gefangshuai.wfinal.plugin.menumapper.core.Menu;
-import io.github.gefangshuai.wfinal.plugin.menumapper.core.MenuMapper;
-import io.github.gefangshuai.wfinal.plugin.menumapper.interceptor.MenuMapperInterceptor;
+import io.github.gefangshuai.wfinal.menumapper.core.Menu;
+import io.github.gefangshuai.wfinal.menumapper.interceptor.MenuMapperInterceptor;
+import io.github.gefangshuai.wfinal.menumapper.core.MenuMapper;
 
 import java.lang.reflect.Method;
 import java.util.List;

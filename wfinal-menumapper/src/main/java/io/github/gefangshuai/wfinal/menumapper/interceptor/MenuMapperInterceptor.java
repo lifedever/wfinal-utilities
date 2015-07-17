@@ -1,17 +1,17 @@
-package io.github.gefangshuai.wfinal.plugin.menumapper.interceptor;
+package io.github.gefangshuai.wfinal.menumapper.interceptor;
 
 import com.jfinal.aop.Interceptor;
 import com.jfinal.aop.Invocation;
 import com.jfinal.core.Controller;
 import com.jfinal.log.Logger;
-import io.github.gefangshuai.wfinal.plugin.menumapper.core.Menu;
-import io.github.gefangshuai.wfinal.plugin.menumapper.core.MenuMapper;
-import io.github.gefangshuai.wfinal.plugin.menumapper.MenuMapperPlugin;
+import io.github.gefangshuai.wfinal.menumapper.core.Menu;
+import io.github.gefangshuai.wfinal.menumapper.core.MenuMapper;
+import io.github.gefangshuai.wfinal.menumapper.plugin.MenuMapperPlugin;
 
 import java.lang.reflect.Method;
 
 /**
- * 菜单注入拦截器，需要结合 ${@link MenuMapperPlugin} 使用
+ * 菜单注入拦截器 {@link MenuMapperPlugin}
  * Created by gefangshuai on 2015/7/6.
  */
 public class MenuMapperInterceptor implements Interceptor{
