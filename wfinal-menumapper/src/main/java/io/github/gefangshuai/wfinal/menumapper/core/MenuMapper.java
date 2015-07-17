@@ -1,5 +1,7 @@
 package io.github.gefangshuai.wfinal.menumapper.core;
 
+import io.github.gefangshuai.wfinal.menumapper.annotation.Menu;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -26,9 +28,6 @@ public class MenuMapper {
         return ctrlMap;
     }
 
-    public void setCtrlMap(Map<Object, Menu> ctrlMap) {
-        this.ctrlMap = ctrlMap;
-    }
 
     public String getAttribute() {
         return attribute;

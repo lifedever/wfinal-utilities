@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package io.github.gefangshuai.wfinal.base;
+package io.github.gefangshuai.wfinal.base.utils;
 
 import java.lang.reflect.Method;
 

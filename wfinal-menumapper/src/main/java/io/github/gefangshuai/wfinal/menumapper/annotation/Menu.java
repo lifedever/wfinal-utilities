@@ -1,4 +1,4 @@
-package io.github.gefangshuai.wfinal.menumapper.core;
+package io.github.gefangshuai.wfinal.menumapper.annotation;
 
 import java.lang.annotation.*;
 

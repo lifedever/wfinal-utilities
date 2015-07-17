@@ -1,4 +1,4 @@
-package io.github.gefangshuai.wfinal.base;
+package io.github.gefangshuai.wfinal.base.utils;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;

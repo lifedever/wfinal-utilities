@@ -4,7 +4,7 @@ import com.jfinal.aop.Interceptor;
 import com.jfinal.aop.Invocation;
 import com.jfinal.core.Controller;
 import com.jfinal.log.Logger;
-import io.github.gefangshuai.wfinal.menumapper.core.Menu;
+import io.github.gefangshuai.wfinal.menumapper.annotation.Menu;
 import io.github.gefangshuai.wfinal.menumapper.core.MenuMapper;
 import io.github.gefangshuai.wfinal.menumapper.plugin.MenuMapperPlugin;
 

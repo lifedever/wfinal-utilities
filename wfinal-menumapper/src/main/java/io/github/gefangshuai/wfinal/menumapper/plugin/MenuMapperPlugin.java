@@ -6,8 +6,8 @@ import com.jfinal.ext.kit.ClassSearcher;
 import com.jfinal.log.Logger;
 import com.jfinal.plugin.IPlugin;
 import com.jfinal.plugin.activerecord.Model;
-import io.github.gefangshuai.wfinal.menumapper.core.Menu;
-import io.github.gefangshuai.wfinal.menumapper.interceptor.MenuMapperInterceptor;
+import io.github.gefangshuai.wfinal.menumapper.annotation.Menu;
+import io.github.gefangshuai.wfinal.menumapper.core.MenuMapperInterceptor;
 import io.github.gefangshuai.wfinal.menumapper.core.MenuMapper;
 
 import java.lang.reflect.Method;
@@ -20,12 +20,10 @@ import java.util.List;
  */
 public class MenuMapperPlugin implements IPlugin {
     protected final Logger log = Logger.getLogger(getClass());
-
     private List<Class<? extends Model>> excludeClasses = Lists.newArrayList();
     private List<String> includeJars = Lists.newArrayList();
     private boolean includeAllJarsInLib = false;
     private List<String> scanPackages = Lists.newArrayList();
-
     private String attribute;   // response 到前台的菜单对应属性
     private static final String DEFAULT_MENU_ATTR = "menu"; // 默认菜单属性
     public MenuMapperPlugin() {
