@@ -12,36 +12,6 @@ wfinal-utilities
 测试项目：
 [https://github.com/gefangshuai/baseFinal-noshiro](https://github.com/gefangshuai/baseFinal-noshiro);
 
-如直接使用可以添加以下maven仓库信息
-```xml
-<repositories>
-    <repository>
-        <id>haoch-maven-snapshot-repository</id>
-        <name>haoch-maven-snapshot-repository</name>
-        <url>https://raw.github.com/gefangshuai/maven/master/</url>
-    </repository>
-</repositories>
-```
-
-添加依赖
-```xml
-<dependency>
-    <groupId>io.github.gefangshuai.wfinal</groupId>
-    <artifactId>wfinal-model</artifactId>
-    <version>2.1.3</version>
-</dependency>
-<dependency>
-    <groupId>io.github.gefangshuai.wfinal</groupId>
-    <artifactId>wfinal-plugin-menumapper</artifactId>
-    <version>2.1.3</version>
-</dependency>
-<dependency>
-    <groupId>io.github.gefangshuai.wfinal</groupId>
-    <artifactId>wfinal-flash</artifactId>
-    <version>2.1.3</version>
-</dependency>
-```
-
 # Thanks
 - java: 1.7+
 - [jfinal](http://jfinal.com): 2.0
