@@ -21,12 +21,8 @@ public class MenuMapper {
     private MenuMapper() {
     }
 
-    private Map<Object, Menu> ctrlMap = new HashMap<>();
     private String attribute;
 
-    public Map<Object, Menu> getCtrlMap() {
-        return ctrlMap;
-    }
 
 
     public String getAttribute() {
