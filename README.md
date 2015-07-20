@@ -15,16 +15,6 @@
 非常感谢jfinal给我们带来编码的各种快感，本框架的宗旨是
 > **发扬JFinal精神，延续JFinal精神!**
 
-# 更新说明
-### 2.1.2 update
-##### 扩展FlashMessageUtils方法，将redirect功能继承到FlashMessageUtils中。
-
-虽然这个改进看似简单，却能将原来的两行代码缩少为一行！（掌声~~ -_-！），使用放法：
-```java
-FlashMessageUtils.redirectSuccessMessage(this, "/signin", "退出成功！");
-```
-其他方法可以直接查看源码即可。
-
 # 使用方法
 首先[点击这里](https://github.com/gefangshuai/wfinal-utilities/archive/master.zip)下载最新代码
 
@@ -70,12 +60,22 @@ mvn clean compile install
 </dependency>
 ```
 
+# 开发计划
+Follow on [trello](https://trello.com/c/2w0GnVut/10--)
+
+# 更新说明
+### 2.1.2 update
+##### 扩展FlashMessageUtils方法，将redirect功能继承到FlashMessageUtils中。
+
+虽然这个改进看似简单，却能将原来的两行代码缩少为一行！（掌声~~ -_-！），使用放法：
+```java
+FlashMessageUtils.redirectSuccessMessage(this, "/signin", "退出成功！");
+```
+其他方法可以直接查看源码即可。
+
 # Thanks
 - java: 1.7+
 - [jfinal](http://jfinal.com): 2.0
 - jfinal-ext: 3.1.2
-
-# 开发计划
-Follow on [trello](https://trello.com/c/2w0GnVut/10--)
 
 <strong style="color: red">框架持续更新中，敬请关注^_^!</strong>
