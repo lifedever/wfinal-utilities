@@ -75,7 +75,13 @@ Follow on [trello](https://trello.com/c/2w0GnVut/10--)
 # 更新说明
 
 ### 2.1.3 update
-wfinal-security简单权限管理框架（未完成，查看进度请关注：[trello progress](https://trello.com/c/uLAtEEjG/5--)）
+* 加入`wfinal-security`安全验证模块，实现了登录验证功能托管，具体使用方法请参考[wfinal security使用说明](https://github.com/gefangshuai/wfinal-utilities/wiki/wfinal-security%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E)（未完成，查看进度请关注：[trello progress](https://trello.com/c/uLAtEEjG/5--)）
+* 重构menumapper模块，删除没用的注解扫描过程
+* 改进WModel中获取数据表信息的方式, 改为jfinal的方式获取，节省效率
+```java
+Table table = TableMapping.me().getTable(getClass());
+```
+* 其他已知bug修复
 
 ### 2.1.2 update
 ##### 扩展FlashMessageUtils方法，将redirect功能继承到FlashMessageUtils中。
