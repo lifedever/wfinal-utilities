@@ -9,6 +9,7 @@ import io.github.gefangshuai.wfinal.model.search.PageRequest;
 import io.github.gefangshuai.wfinal.model.search.QueryMap;
 import io.github.gefangshuai.wfinal.model.search.Sort;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -41,7 +42,13 @@ public class WModel<M extends Model> extends Model<M> {
      * 自动判断保存还是更新
      */
     public boolean saveOrUpdate() {
-        M m = findById();
+
+        List<Object> values = new ArrayList<>();
+        for (String pk : getPkNames()) {
+            values.add(get(pk));
+        }
+
+        M m = findById(values.toArray());
         if (m == null) {
             return save();
         } else {
