@@ -1,4 +1,4 @@
-package io.github.gefangshuai.wfinal.security.core;
+package io.github.gefangshuai.wfinal.base.utils;
 
 import javax.servlet.http.HttpSession;
 

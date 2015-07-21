@@ -60,10 +60,23 @@ mvn clean compile install
 </dependency>
 ```
 
+## 4. 开启Security功能（已依赖`wfinal-base`，不需要再单独依赖！）
+```xml
+<dependency>
+    <groupId>io.github.gefangshuai.wfinal</groupId>
+    <artifactId>wfinal-security</artifactId>
+    <version>${wfinal.version}</version>
+</dependency>
+```
+
 # 开发计划
 Follow on [trello](https://trello.com/c/2w0GnVut/10--)
 
 # 更新说明
+
+### 2.1.3 update
+wfinal-security简单权限管理框架（未完成，查看进度请关注：[trello progress](https://trello.com/c/uLAtEEjG/5--)）
+
 ### 2.1.2 update
 ##### 扩展FlashMessageUtils方法，将redirect功能继承到FlashMessageUtils中。
 

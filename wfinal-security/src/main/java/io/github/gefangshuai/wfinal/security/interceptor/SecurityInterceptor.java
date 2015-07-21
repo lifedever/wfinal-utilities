@@ -4,6 +4,7 @@ import com.jfinal.aop.Interceptor;
 import com.jfinal.aop.Invocation;
 import com.jfinal.core.Controller;
 import com.jfinal.ext.kit.JfinalKit;
+import io.github.gefangshuai.wfinal.base.utils.SessionKit;
 import io.github.gefangshuai.wfinal.security.annotation.LoginRequired;
 import io.github.gefangshuai.wfinal.security.core.*;
 import io.github.gefangshuai.wfinal.security.core.SecurityKit;
