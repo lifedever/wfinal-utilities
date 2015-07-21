@@ -24,16 +24,50 @@ public class SecurityInterceptor implements Interceptor {
         SessionKit.put(controller.getSession());
         Method method = inv.getMethod();
         SecurityPlugin securityPlugin = (SecurityPlugin) JfinalKit.findPlugin(SecurityPlugin.class).get(0);
-        if(loginCheck(controller, method)) {
-            controller.setAttr(securityPlugin.getSubjectKey(), SecurityKit.getSubject(controller.getSession()));
-            inv.invoke();
-        }else {
-            if (securityPlugin.isBackToLoginPage()) {
-                controller.redirect(securityPlugin.getLoginUrl());
-            }else{
-                controller.renderError(401);
+        if (needLoginCheck(controller, method)) {   // 需要登录验证
+            if(hasLogged(controller, method)) {    // 登录成功
+                controller.setAttr(securityPlugin.getSubjectKey(), SecurityKit.getSubject(controller.getSession()));
+                clearUrlBeforeLoginInfo(controller);
+                inv.invoke();
+            }else {
+                saveUrlBeforeLoginToSession(controller);
+                if (securityPlugin.isBackToLoginPage()) {
+                    controller.redirect(securityPlugin.getLoginUrl());
+                } else {
+                    controller.renderError(401);
+                }
             }
+        }else{
+            inv.invoke();
         }
+    }
+
+    /**
+     * 是否需要登录验证
+     * @param controller
+     * @param method
+     * @return
+     */
+    private boolean needLoginCheck(Controller controller, Method method) {
+        return controller.getClass().isAnnotationPresent(LoginRequired.class) || method.isAnnotationPresent(LoginRequired.class);
+    }
+
+    /**
+     * 将登录前被拦截的url保存到session中
+     * @param controller
+     */
+    private void saveUrlBeforeLoginToSession(Controller controller) {
+        String urlBeforeLogin = controller.getRequest().getServletPath();
+        controller.setSessionAttr(SecurityConst.SECURITY_SESSION_URL_BEFORE_LOGIN, urlBeforeLogin);
+    }
+
+    /**
+     * 清除保存的登陆前访问的url
+     * @param controller
+     */
+    private void clearUrlBeforeLoginInfo(Controller controller) {
+        if(controller.getSessionAttr(SecurityConst.SECURITY_SESSION_URL_BEFORE_LOGIN)!=null)
+            controller.removeSessionAttr(SecurityConst.SECURITY_SESSION_URL_BEFORE_LOGIN);
     }
 
     /**
@@ -42,16 +76,8 @@ public class SecurityInterceptor implements Interceptor {
      * @param method
      * @return
      */
-    private boolean loginCheck(Controller controller, Method method) {
+    private boolean hasLogged(Controller controller, Method method) {
         Subject subject = SecurityKit.getSubject(controller.getSession());
-        // 类上有注解，则所有的方法请求都需要进行过滤
-        if (controller.getClass().getAnnotation(LoginRequired.class) != null && !subject.isLogin()) {
-            return false;
-        }
-        // 注解在方法上
-        if (method.getAnnotation(LoginRequired.class) != null && !subject.isLogin()) {
-            return false;
-        }
-        return true;
+        return subject.isLogin();
     }
 }

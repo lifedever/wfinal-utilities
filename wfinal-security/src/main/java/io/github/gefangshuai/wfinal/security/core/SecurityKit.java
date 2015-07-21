@@ -1,6 +1,8 @@
 package io.github.gefangshuai.wfinal.security.core;
 
+import io.github.gefangshuai.wfinal.security.exception.NoCallLoginMethodException;
 import io.github.gefangshuai.wfinal.security.proxy.LoginValidateProxy;
+import org.apache.commons.lang3.StringUtils;
 
 import javax.servlet.http.HttpSession;
 
@@ -41,5 +43,12 @@ public class SecurityKit {
         if (subject == null)
             return new Subject(null, false);
         return subject;
+    }
+
+    public static String getUrlBeforeLogin(HttpSession session) {
+        String urlBeforeLogin = (String) session.getAttribute(SecurityConst.SECURITY_SESSION_URL_BEFORE_LOGIN);
+        if(StringUtils.isBlank(urlBeforeLogin))
+            throw  new NoCallLoginMethodException();
+        return urlBeforeLogin;
     }
 }

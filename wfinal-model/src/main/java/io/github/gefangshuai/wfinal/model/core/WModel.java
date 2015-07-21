@@ -1,8 +1,10 @@
 package io.github.gefangshuai.wfinal.model.core;
 
-import com.jfinal.ext.plugin.tablebind.TableBind;
+import com.jfinal.log.Logger;
 import com.jfinal.plugin.activerecord.Model;
 import com.jfinal.plugin.activerecord.Page;
+import com.jfinal.plugin.activerecord.Table;
+import com.jfinal.plugin.activerecord.TableMapping;
 import io.github.gefangshuai.wfinal.model.search.PageRequest;
 import io.github.gefangshuai.wfinal.model.search.QueryMap;
 import io.github.gefangshuai.wfinal.model.search.Sort;
@@ -14,36 +16,32 @@ import java.util.List;
  * Created by gefangshuai on 2015/7/7.
  */
 public class WModel<M extends Model> extends Model<M> {
-    private String pkName;
-    private String tableName;
+    private Logger logger = Logger.getLogger(WModel.class);
 
-    public WModel() {
-        TableBind tb = ModelMapper.getInstance().getTable(getClass());
-        if (tb != null) {
-            pkName = tb.pkName();
-            tableName = tb.tableName();
-        }
+    public Table getTable() {
+        Table table = TableMapping.me().getTable(getClass());
+        return table;
     }
 
     /**
      * 获取当前表主键
      */
-    public String getPkName() {
-        return pkName;
+    public String[] getPkNames() {
+        return getTable().getPrimaryKey();
     }
 
     /**
      * 获取当前表名
      */
     public String getTableName() {
-        return tableName;
+        return getTable().getName();
     }
 
     /**
      * 自动判断保存还是更新
      */
     public boolean saveOrUpdate() {
-        M m = findById(get(pkName));
+        M m = findById();
         if (m == null) {
             return save();
         } else {
@@ -65,6 +63,7 @@ public class WModel<M extends Model> extends Model<M> {
         return find(queryMap.getQuerySql(this), queryMap.getParas());
 
     }
+
     /**
      * 查询所有记录，带排序
      */
