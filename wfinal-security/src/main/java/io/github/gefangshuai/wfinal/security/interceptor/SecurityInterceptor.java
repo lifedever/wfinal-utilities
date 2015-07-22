@@ -24,9 +24,9 @@ public class SecurityInterceptor implements Interceptor {
         SessionKit.put(controller.getSession());
         Method method = inv.getMethod();
         SecurityPlugin securityPlugin = (SecurityPlugin) JfinalKit.findPlugin(SecurityPlugin.class).get(0);
+        controller.setAttr(securityPlugin.getSubjectKey(), SecurityKit.getSubject(controller.getSession()));
         if (needLoginCheck(controller, method)) {   // 需要登录验证
             if(hasLogged(controller, method)) {    // 登录成功
-                controller.setAttr(securityPlugin.getSubjectKey(), SecurityKit.getSubject(controller.getSession()));
                 clearUrlBeforeLoginInfo(controller);
                 inv.invoke();
             }else {
