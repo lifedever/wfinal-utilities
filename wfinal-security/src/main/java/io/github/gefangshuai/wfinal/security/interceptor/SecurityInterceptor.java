@@ -28,15 +28,15 @@ public class SecurityInterceptor implements Interceptor {
         Method method = inv.getMethod();
         SecurityPlugin securityPlugin = (SecurityPlugin) JfinalKit.findPlugin(SecurityPlugin.class).get(0);
         SecurityRule securityRule = securityPlugin.getSecurityRule();
-        controller.setAttr(securityPlugin.getSubjectKey(), SecurityKit.getSubject(controller.getSession()));
+        controller.setAttr(securityRule.getSubjectKey(), SecurityKit.getSubject(controller.getSession()));
         if (needLoginCheck(securityRule, controller, method)) {   // 需要登录验证
             if (hasLogged(controller, method)) {    // 登录成功
                 clearUrlBeforeLoginInfo(controller);
                 inv.invoke();
             } else {
                 saveUrlBeforeLoginToSession(controller);
-                if (securityPlugin.isBackToLoginPage()) {
-                    controller.redirect(securityPlugin.getLoginUrl());
+                if (securityRule.isBackToLoginPage()) {
+                    controller.redirect(securityRule.getLoginUrl());
                 } else {
                     controller.renderError(401);
                 }
@@ -55,11 +55,11 @@ public class SecurityInterceptor implements Interceptor {
      */
     private boolean needLoginCheck(SecurityRule securityRule, Controller controller, Method method) {
         boolean ruleConf = false;
-        for (String login : securityRule.getLogin()) {
-            login = login.endsWith("/") ? login : login + "/";
+        for (String url : securityRule.getFilterUrls()) {
+            url = url.endsWith("/") ? url : url + "/";
             String servletPath = controller.getRequest().getServletPath();
             servletPath = servletPath.endsWith("/") ? servletPath : servletPath + "/";
-            if (servletPath.startsWith(login)) {
+            if (servletPath.startsWith(url)) {
                 ruleConf = true;
                 break;
             }

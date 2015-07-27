@@ -12,25 +12,10 @@ import io.github.gefangshuai.wfinal.security.interceptor.SecurityInterceptor;
  */
 public class SecurityPlugin implements IPlugin {
     private final Logger log = Logger.getLogger(getClass());
-    private String loginUrl;    // 登录url
-    private boolean backToLoginPage = false;    // 登录失败是否跳转回登陆页面
-    private String subjectKey = SecurityConst.SECURITY_SESSION_SUBJECT_KEY;     // 前台获取登录信息的key
     private SecurityRule securityRule;
 
     public SecurityPlugin() {
 
-    }
-
-    public void setLoginUrl(String loginUrl) {
-        this.loginUrl = loginUrl;
-    }
-
-    public void setBackToLoginPage(boolean backToLoginPage) {
-        this.backToLoginPage = backToLoginPage;
-    }
-
-    public void setSubjectKey(String subjectKey) {
-        this.subjectKey = subjectKey;
     }
 
     public SecurityRule getSecurityRule() {
@@ -39,18 +24,6 @@ public class SecurityPlugin implements IPlugin {
 
     public void setSecurityRule(SecurityRule securityRule) {
         this.securityRule = securityRule;
-    }
-
-    public boolean isBackToLoginPage() {
-        return backToLoginPage;
-    }
-
-    public String getLoginUrl() {
-        return loginUrl;
-    }
-
-    public String getSubjectKey() {
-        return subjectKey;
     }
 
     @Override
