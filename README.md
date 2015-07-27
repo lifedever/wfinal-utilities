@@ -74,7 +74,7 @@ Follow on [trello](https://trello.com/c/2w0GnVut/10--)
 
 # 更新说明
 ### 2.1.4 update
-- 完成`wfinal-cecurity`所有功能的扩展，具体使用方法可以参见[wfinal security使用说明](https://github.com/gefangshuai/wfinal-utilities/wiki/wfinal-security%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E)
+- 完成`wfinal-security`所有功能的扩展，具体使用方法可以参见[wfinal security使用说明](https://github.com/gefangshuai/wfinal-utilities/wiki/wfinal-security%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E)
 - 修复没有加`@RequireLogin`注解导致`subjectKey`没有传入到前台的BUG
 - 去掉`MenumapperInterceptor` 和 `SecurityInterceptor` 两个Interceptor的配置，改为插件中动态配置，不需要再人工引入，这样就可以集成框架的时候少写两个拦截器
 
