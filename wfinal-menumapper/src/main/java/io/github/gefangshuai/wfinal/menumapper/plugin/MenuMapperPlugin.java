@@ -1,5 +1,6 @@
 package io.github.gefangshuai.wfinal.menumapper.plugin;
 
+import com.jfinal.ext.kit.JfinalKit;
 import com.jfinal.log.Logger;
 import com.jfinal.plugin.IPlugin;
 import io.github.gefangshuai.wfinal.menumapper.interceptor.MenuMapperInterceptor;
@@ -26,6 +27,7 @@ public class MenuMapperPlugin implements IPlugin {
     @Override
     public boolean start() {
         log.debug("----init MenuMapper Plugin!----");
+        JfinalKit.getInterceptors().addGlobalActionInterceptor(new MenuMapperInterceptor());
         MenuMapper.getInstance().setAttribute(attribute);
         log.debug("MenuMapper attribute: " + attribute);
         return true;

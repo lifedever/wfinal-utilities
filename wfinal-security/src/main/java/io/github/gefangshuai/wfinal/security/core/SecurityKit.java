@@ -1,5 +1,6 @@
 package io.github.gefangshuai.wfinal.security.core;
 
+import com.jfinal.core.Controller;
 import io.github.gefangshuai.wfinal.security.exception.NoCallLoginMethodException;
 import io.github.gefangshuai.wfinal.security.proxy.LoginValidateProxy;
 import org.apache.commons.lang3.StringUtils;
@@ -18,7 +19,7 @@ public class SecurityKit {
     public static boolean login(LoginValidateProxy loginValidateProxy, HttpSession session) {
         Subject subject = loginValidateProxy.loginCheck();
         if (subject != null && subject.isLogin()) {    // 登录成功，将信息保存到session
-            session.setAttribute(SecurityConst.SECURITY_SESSION_SUBJECT_KEY, subject);
+            saveSubjectInfoToSession(session, subject);
             return true;
         } else {  // 登录失败，返回false
             return false;
@@ -48,7 +49,12 @@ public class SecurityKit {
     public static String getUrlBeforeLogin(HttpSession session) {
         String urlBeforeLogin = (String) session.getAttribute(SecurityConst.SECURITY_SESSION_URL_BEFORE_LOGIN);
         if(StringUtils.isBlank(urlBeforeLogin))
-            throw  new NoCallLoginMethodException();
+            return "";
         return urlBeforeLogin;
     }
+
+    private static void saveSubjectInfoToSession(HttpSession session, Subject subject) {
+        session.setAttribute(SecurityConst.SECURITY_SESSION_SUBJECT_KEY, subject);
+    }
+
 }
