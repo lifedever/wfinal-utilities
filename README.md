@@ -23,51 +23,8 @@
 mvn clean compile install
 ```
 将扩展安装到mavne本地仓库
-# 依赖介绍
-## 1. jfinal基础依赖
-只包含jfinal框架所需的基础libs
-```xml
-<dependency>
-    <groupId>io.github.gefangshuai.wfinal</groupId>
-    <artifactId>wfinal-base</artifactId>
-    <version>${wfinal.version}</version>
-</dependency>
-```
-## 2. MenuMapperPlugin依赖
-开启MenuMapper Plugin功能（插件已依赖`wfinal-base`，不需要再单独依赖！）
-```xml
-<dependency>
-    <groupId>io.github.gefangshuai.wfinal</groupId>
-    <artifactId>wfinal-menumapper</artifactId>
-    <version>${wfinal.version}</version>
-</dependency>
-```
-## 3. 开启WModel功能（已依赖`wfinal-base`，不需要再单独依赖！）
-```xml
-<dependency>
-    <groupId>io.github.gefangshuai.wfinal</groupId>
-    <artifactId>wfinal-model</artifactId>
-    <version>${wfinal.version}</version>
-</dependency>
-```
 
-## 4. 开启Flash功能（已依赖`wfinal-base`，不需要再单独依赖！）
-```xml
-<dependency>
-    <groupId>io.github.gefangshuai.wfinal</groupId>
-    <artifactId>wfinal-flash</artifactId>
-    <version>${wfinal.version}</version>
-</dependency>
-```
-
-## 4. 开启Security功能（已依赖`wfinal-base`，不需要再单独依赖！）
-```xml
-<dependency>
-    <groupId>io.github.gefangshuai.wfinal</groupId>
-    <artifactId>wfinal-security</artifactId>
-    <version>${wfinal.version}</version>
-</dependency>
-```
+**详细使用说明请参考 [WIKI](https://github.com/gefangshuai/wfinal-utilities/wiki)**
 
 # 开发计划
 Follow on [trello](https://trello.com/c/2w0GnVut/10--)
