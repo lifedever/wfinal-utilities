@@ -28,9 +28,9 @@ public class SecurityInterceptor implements Interceptor {
         Method method = inv.getMethod();
         SecurityPlugin securityPlugin = (SecurityPlugin) JfinalKit.findPlugin(SecurityPlugin.class).get(0);
         SecurityRule securityRule = securityPlugin.getSecurityRule();
-        controller.setAttr(securityRule.getSubjectKey(), SecurityKit.getSubject(controller.getSession()));
+        controller.setAttr(securityRule.getSubjectKey(), SecurityKit.getSubject(controller));
         if (needLoginCheck(securityRule, controller, method)) {   // 需要登录验证
-            if (hasLogged(controller, method)) {    // 登录成功
+            if (hasLogged(controller)) {    // 登录成功
                 clearUrlBeforeLoginInfo(controller);
                 inv.invoke();
             } else {
@@ -95,11 +95,10 @@ public class SecurityInterceptor implements Interceptor {
      * 验证是否登陆
      *
      * @param controller
-     * @param method
      * @return
      */
-    private boolean hasLogged(Controller controller, Method method) {
-        Subject subject = SecurityKit.getSubject(controller.getSession());
+    private boolean hasLogged(Controller controller) {
+        Subject subject = SecurityKit.getSubject(controller);
         return subject.isLogin();
     }
 }

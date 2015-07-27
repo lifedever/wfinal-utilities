@@ -17,7 +17,6 @@ import java.util.List;
  * Created by gefangshuai on 2015/7/7.
  */
 public class WModel<M extends Model> extends Model<M> {
-    private Logger logger = Logger.getLogger(WModel.class);
 
     public Table getTable() {
         Table table = TableMapping.me().getTable(getClass());
