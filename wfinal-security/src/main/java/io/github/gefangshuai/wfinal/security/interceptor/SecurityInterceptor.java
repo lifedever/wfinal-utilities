@@ -5,6 +5,7 @@ import com.jfinal.aop.Invocation;
 import com.jfinal.core.Controller;
 import com.jfinal.ext.kit.JfinalKit;
 import io.github.gefangshuai.wfinal.base.utils.SessionKit;
+import io.github.gefangshuai.wfinal.security.annotation.LoginClear;
 import io.github.gefangshuai.wfinal.security.annotation.LoginRequired;
 import io.github.gefangshuai.wfinal.security.core.SecurityConst;
 import io.github.gefangshuai.wfinal.security.core.SecurityKit;
@@ -58,16 +59,16 @@ public class SecurityInterceptor implements Interceptor {
             login = login.endsWith("/") ? login : login + "/";
             String servletPath = controller.getRequest().getServletPath();
             servletPath = servletPath.endsWith("/") ? servletPath : servletPath + "/";
-
             if (servletPath.startsWith(login)) {
                 ruleConf = true;
                 break;
             }
         }
 
-        return  ruleConf ||
+        return (ruleConf ||
                 controller.getClass().isAnnotationPresent(LoginRequired.class) ||
-                method.isAnnotationPresent(LoginRequired.class);
+                method.isAnnotationPresent(LoginRequired.class)) &&
+                !method.isAnnotationPresent(LoginClear.class);
     }
 
     /**
