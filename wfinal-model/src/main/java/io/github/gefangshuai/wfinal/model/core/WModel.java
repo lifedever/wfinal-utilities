@@ -1,6 +1,5 @@
 package io.github.gefangshuai.wfinal.model.core;
 
-import com.jfinal.log.Logger;
 import com.jfinal.plugin.activerecord.Model;
 import com.jfinal.plugin.activerecord.Page;
 import com.jfinal.plugin.activerecord.Table;

@@ -11,6 +11,8 @@
         <module>wfinal-model</module>
         <module>wfinal-flash</module>
         <module>wfinal-security</module>
+        <module>wfinal-web</module>
+        <module>wfinal-jar</module>
     </modules>
     <packaging>pom</packaging>
 
