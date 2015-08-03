@@ -58,4 +58,6 @@ FlashMessageUtils.redirectSuccessMessage(this, "/signin", "退出成功！");
 - [jfinal](http://jfinal.com): 2.0
 - jfinal-ext: 3.1.2
 
+# 请我喝咖啡
+![](http://git.oschina.net/gefangshuai/wincn-static/raw/master/imgs/zhong.png?dir=0&filepath=imgs%2Fzhong.png&oid=633f9376e629ada819748711ae105008cd5c3500&sha=206207f02b98f97dcced86ee23fa573bd0c1abfc)
 <strong style="color: red">框架持续更新中，敬请关注^_^!</strong>

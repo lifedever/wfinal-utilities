@@ -47,5 +47,11 @@
             <artifactId>wfinal-web</artifactId>
             <version>2.1.4</version>
         </dependency>
+
+        <dependency>
+            <groupId>net.dreamlu</groupId>
+            <artifactId>JFinal-event</artifactId>
+            <version>1.1</version>
+        </dependency>
     </dependencies>
 </project>
