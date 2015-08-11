@@ -17,6 +17,20 @@ public class Subject<T> {
         this.login = login;
     }
 
+    public String[] getAccessAction() {
+        return accessAction;
+    }
+
+    public void setAccessAction(String[] accessAction) {
+        this.accessAction = accessAction;
+    }
+
+    public Subject(T t, boolean login, String[] accessAction) {
+        this.t = t;
+        this.login = login;
+        this.accessAction = accessAction;
+    }
+
     public Subject(T t, boolean login) {
         this.t = t;
         this.login = login;

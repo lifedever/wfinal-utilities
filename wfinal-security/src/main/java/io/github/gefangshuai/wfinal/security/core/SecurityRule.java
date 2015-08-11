@@ -8,6 +8,7 @@ public class SecurityRule {
     private String[] filterUrls;    // 要过滤的url
     private String loginUrl;    // 登录url
     private boolean backToLoginPage = false;    // 登录失败是否跳转回登陆页面
+    private boolean useAccessActionFilter = false;  // 是否启用用户请求拦截
     private String subjectKey = SecurityConst.SECURITY_SESSION_SUBJECT_KEY;     // 前台获取登录信息的key
 
     public SecurityRule() {
@@ -43,5 +44,13 @@ public class SecurityRule {
 
     public void setSubjectKey(String subjectKey) {
         this.subjectKey = subjectKey;
+    }
+
+    public boolean isUseAccessActionFilter() {
+        return useAccessActionFilter;
+    }
+
+    public void setUseAccessActionFilter(boolean useAccessActionFilter) {
+        this.useAccessActionFilter = useAccessActionFilter;
     }
 }

@@ -5,6 +5,7 @@ import com.jfinal.aop.Invocation;
 import com.jfinal.core.Controller;
 import com.jfinal.ext.kit.JfinalKit;
 import io.github.gefangshuai.wfinal.base.utils.SessionKit;
+import io.github.gefangshuai.wfinal.security.annotation.AccessClear;
 import io.github.gefangshuai.wfinal.security.annotation.LoginClear;
 import io.github.gefangshuai.wfinal.security.annotation.LoginRequired;
 import io.github.gefangshuai.wfinal.security.core.SecurityConst;
@@ -14,6 +15,7 @@ import io.github.gefangshuai.wfinal.security.core.Subject;
 import io.github.gefangshuai.wfinal.security.plugin.SecurityPlugin;
 
 import java.lang.reflect.Method;
+import java.util.List;
 
 /**
  * 安全拦截器
@@ -28,7 +30,15 @@ public class SecurityInterceptor implements Interceptor {
         Method method = inv.getMethod();
         SecurityPlugin securityPlugin = (SecurityPlugin) JfinalKit.findPlugin(SecurityPlugin.class).get(0);
         SecurityRule securityRule = securityPlugin.getSecurityRule();
-        controller.setAttr(securityRule.getSubjectKey(), SecurityKit.getSubject(controller));
+        Subject subject = SecurityKit.getSubject(controller);
+        controller.setAttr(securityRule.getSubjectKey(), subject);
+
+        if (subject.isLogin() && securityRule.isUseAccessActionFilter()) {
+            if(!accessActionCheck(inv)){
+                controller.renderError(403);
+            }
+        }
+
         if (needLoginCheck(securityRule, controller, method)) {   // 需要登录验证
             if (hasLogged(controller)) {    // 登录成功
                 clearUrlBeforeLoginInfo(controller);
@@ -44,6 +54,28 @@ public class SecurityInterceptor implements Interceptor {
         } else {
             inv.invoke();
         }
+    }
+
+    /**
+     * 是否有权限访问当前
+     */
+    private boolean accessActionCheck(Invocation inv) {
+        Controller controller = inv.getController();
+        Method method = inv.getMethod();
+
+        if (method.isAnnotationPresent(AccessClear.class) || controller.getClass().isAnnotationPresent(AccessClear.class))
+            return true;
+
+        Subject subject = SecurityKit.getSubject(controller);
+        if (subject.getAccessAction() == null)
+            return false;
+        String servletPath = controller.getRequest().getServletPath();
+        for (String accA : subject.getAccessAction()) {
+            if (servletPath.startsWith(accA)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     /**

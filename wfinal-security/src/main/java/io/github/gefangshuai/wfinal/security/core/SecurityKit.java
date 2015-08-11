@@ -27,7 +27,7 @@ public class SecurityKit {
     /**
      * 用户退出
      */
-    public static void logout(Controller controller){
+    public static void logout(Controller controller) {
         controller.removeSessionAttr(SecurityConst.SECURITY_SESSION_SUBJECT_KEY);
         controller.removeCookie(SecurityConst.SECURITY_SESSION_SUBJECT_KEY);
     }
@@ -42,15 +42,15 @@ public class SecurityKit {
         if (subject == null) {
             String subJson = controller.getCookie(SecurityConst.SECURITY_SESSION_SUBJECT_KEY);
             subject = new Gson().fromJson(subJson, Subject.class);
-            if(subject == null)
-                return new Subject(null, false);
+            if (subject == null)
+                return new Subject(null, false, null);
         }
         return subject;
     }
 
     public static String getUrlBeforeLogin(Controller controller) {
         String urlBeforeLogin = controller.getSessionAttr(SecurityConst.SECURITY_SESSION_URL_BEFORE_LOGIN);
-        if(StringUtils.isBlank(urlBeforeLogin))
+        if (StringUtils.isBlank(urlBeforeLogin))
             return "";
         return urlBeforeLogin;
     }
