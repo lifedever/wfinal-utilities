@@ -7,6 +7,7 @@ package io.github.gefangshuai.wfinal.security.core;
 public class Subject<T> {
     private T t;    // 登录信息
     private boolean login = false;    // 是否登录
+    private String[] accessAction;        // 允许访问的action, 以
 
     public boolean isLogin() {
         return login;
@@ -23,7 +24,7 @@ public class Subject<T> {
 
     public Subject(T t) {
         this.t = t;
-        if(t!=null)
+        if (t != null)
             this.login = true;
     }
 
