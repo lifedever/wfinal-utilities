@@ -9,6 +9,7 @@ import io.github.gefangshuai.wfinal.model.search.QueryMap;
 import io.github.gefangshuai.wfinal.model.search.Sort;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -40,7 +41,6 @@ public class WModel<M extends Model> extends Model<M> {
      * 自动判断保存还是更新
      */
     public boolean saveOrUpdate() {
-
         List<Object> values = new ArrayList<>();
         for (String pk : getPkNames()) {
             values.add(get(pk));
@@ -55,6 +55,50 @@ public class WModel<M extends Model> extends Model<M> {
     }
 
     /**
+     * 自动判断保存还是更新，并自动更新操作时间，默认：createtime和updatetime
+     */
+    public boolean saveOrUpdate(boolean autoTimestamp) {
+        if (autoTimestamp) {
+            String createTimeColumnName = "createtime";
+            String updateTimeColumnName = "updatetime";
+            return saveOrUpdate(createTimeColumnName, updateTimeColumnName);
+        } else {
+            return saveOrUpdate();
+        }
+    }
+
+    /**
+     * 自动判断保存还是更新，并自动更新操作时间
+     */
+    public boolean saveOrUpdate(String createTimeColumnName, String updateTimeColumnName) {
+
+        List<Object> values = new ArrayList<>();
+        for (String pk : getPkNames()) {
+            values.add(get(pk));
+        }
+
+        M m = findById(values.toArray());
+        if (m == null) {
+            set(createTimeColumnName, new Date());
+            return save();
+        } else {
+            set(updateTimeColumnName, new Date());
+            return update();
+        }
+    }
+
+
+    /**
+     * 查找一条记录
+     *
+     * @param queryMap
+     * @return
+     */
+    public M findOne(QueryMap queryMap) {
+        return findFirst(queryMap.getQuerySql(this), queryMap.getParas());
+    }
+
+    /**
      * 查询所有记录
      */
     public List<M> findAll() {
@@ -66,7 +110,6 @@ public class WModel<M extends Model> extends Model<M> {
      */
     public List<M> findAll(QueryMap queryMap) {
         return find(queryMap.getQuerySql(this), queryMap.getParas());
-
     }
 
     /**

@@ -3,7 +3,6 @@ package io.github.gefangshuai.wfinal.security.plugin;
 import com.jfinal.ext.kit.JfinalKit;
 import com.jfinal.log.Logger;
 import com.jfinal.plugin.IPlugin;
-import io.github.gefangshuai.wfinal.security.core.SecurityConst;
 import io.github.gefangshuai.wfinal.security.core.SecurityRule;
 import io.github.gefangshuai.wfinal.security.interceptor.SecurityInterceptor;
 

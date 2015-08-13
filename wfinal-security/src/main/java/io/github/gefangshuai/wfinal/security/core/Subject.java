@@ -7,8 +7,7 @@ package io.github.gefangshuai.wfinal.security.core;
 public class Subject<T> {
     private T t;    // 登录信息
     private boolean login = false;    // 是否登录
-    private String[] accessAction;        // 允许访问的action, 以
-
+    private String[] permissions;            // 与权限相关的Role
     public boolean isLogin() {
         return login;
     }
@@ -17,18 +16,19 @@ public class Subject<T> {
         this.login = login;
     }
 
-    public String[] getAccessAction() {
-        return accessAction;
+
+    public String[] getPermissions() {
+        return permissions;
     }
 
-    public void setAccessAction(String[] accessAction) {
-        this.accessAction = accessAction;
+    public void setPermissions(String[] permissions) {
+        this.permissions = permissions;
     }
 
-    public Subject(T t, boolean login, String[] accessAction) {
+    public Subject(T t, boolean login, String[] permissions) {
         this.t = t;
         this.login = login;
-        this.accessAction = accessAction;
+        this.permissions = permissions;
     }
 
     public Subject(T t, boolean login) {

@@ -6,6 +6,7 @@ import com.jfinal.core.Controller;
 import com.jfinal.ext.kit.JfinalKit;
 import io.github.gefangshuai.wfinal.base.utils.SessionKit;
 import io.github.gefangshuai.wfinal.security.annotation.AccessClear;
+import io.github.gefangshuai.wfinal.security.annotation.AccessPermissions;
 import io.github.gefangshuai.wfinal.security.annotation.LoginClear;
 import io.github.gefangshuai.wfinal.security.annotation.LoginRequired;
 import io.github.gefangshuai.wfinal.security.core.SecurityConst;
@@ -15,7 +16,7 @@ import io.github.gefangshuai.wfinal.security.core.Subject;
 import io.github.gefangshuai.wfinal.security.plugin.SecurityPlugin;
 
 import java.lang.reflect.Method;
-import java.util.List;
+import java.util.Arrays;
 
 /**
  * 安全拦截器
@@ -34,7 +35,7 @@ public class SecurityInterceptor implements Interceptor {
         controller.setAttr(securityRule.getSubjectKey(), subject);
 
         if (subject.isLogin() && securityRule.isUseAccessActionFilter()) {
-            if(!accessActionCheck(inv)){
+            if (!accessActionCheck(inv)) {
                 controller.renderError(403);
             }
         }
@@ -62,20 +63,27 @@ public class SecurityInterceptor implements Interceptor {
     private boolean accessActionCheck(Invocation inv) {
         Controller controller = inv.getController();
         Method method = inv.getMethod();
+        Subject subject = SecurityKit.getSubject(controller);
 
+        // 有清除注解，直接通过校验
         if (method.isAnnotationPresent(AccessClear.class) || controller.getClass().isAnnotationPresent(AccessClear.class))
             return true;
 
-        Subject subject = SecurityKit.getSubject(controller);
-        if (subject.getAccessAction() == null)
-            return false;
-        String servletPath = controller.getRequest().getServletPath();
-        for (String accA : subject.getAccessAction()) {
-            if (servletPath.startsWith(accA)) {
-                return true;
+        // 判断subject设置的Role是否通过校验
+        if (controller.getClass().isAnnotationPresent(AccessPermissions.class) || method.isAnnotationPresent(AccessPermissions.class)) {
+            if (subject.getPermissions() == null)
+                return false;
+            AccessPermissions anno = controller.getClass().getAnnotation(AccessPermissions.class);
+            if (method.isAnnotationPresent(AccessPermissions.class))
+                anno = method.getAnnotation(AccessPermissions.class);
+            String[] annoPermissions = anno.value();
+            for (String permission : annoPermissions) {
+                if (Arrays.asList(subject.getPermissions()).contains(permission))
+                    return true;
             }
+            return false;
         }
-        return false;
+        return true;
     }
 
     /**
