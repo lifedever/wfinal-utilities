@@ -4,6 +4,7 @@ import com.jfinal.plugin.activerecord.Model;
 import com.jfinal.plugin.activerecord.Page;
 import com.jfinal.plugin.activerecord.Table;
 import com.jfinal.plugin.activerecord.TableMapping;
+import io.github.gefangshuai.wfinal.base.utils.EnumKit;
 import io.github.gefangshuai.wfinal.model.search.PageRequest;
 import io.github.gefangshuai.wfinal.model.search.QueryMap;
 import io.github.gefangshuai.wfinal.model.search.Sort;
@@ -17,6 +18,24 @@ import java.util.List;
  * Created by gefangshuai on 2015/7/7.
  */
 public class WModel<M extends Model> extends Model<M> {
+
+    /**
+     * 默认获得ID
+     *
+     * @return
+     */
+    public Integer getId() {
+        return get("id");
+    }
+
+    public  M setId(Object id) {
+        return set("id", id);
+    }
+
+
+    public <E extends Enum<E>> E getEnum(final Class<E> enumClass, String attrName) {
+        return EnumKit.getEnum(enumClass, getInt(attrName));
+    }
 
     public Table getTable() {
         Table table = TableMapping.me().getTable(getClass());
