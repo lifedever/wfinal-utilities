@@ -14,7 +14,7 @@ public class SecurityRule {
     private String loginUrl;    // 登录url
     private boolean backToLoginPage = false;    // 登录失败是否跳转回登陆页面
     private boolean useAccessActionFilter = false;  // 是否启用用户请求拦截
-    private Map<String, Class<? extends Controller>[]> accessPermissionMap = new HashMap<>();
+    private Map<String, Class<? extends Controller>[]> accessPermissionMap;     // 特定权限对应的请求地址前缀，如: <code>accessPermissionMap.put("admin", new Controller[]{UserController.class, BookController.class})</code>
     private String subjectKey = SecurityConst.SECURITY_SESSION_SUBJECT_KEY;     // 前台获取登录信息的key
 
     public SecurityRule() {
