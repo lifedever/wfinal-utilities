@@ -32,7 +32,13 @@ Follow on [trello](https://trello.com/c/2w0GnVut/10--)
 # 更新说明
 
 ### 2.1.6 update
-- 将
+- wfinal-model 插件加入`getEnum()`方法，用来直接获取数据库数值对应的枚举对象
+- wfinal-model 插件中加入`findOne(QueryMap)`通用查询，支持查询一条记录
+- wfinal-model 插件扩展saveOrUpdate支持自动插入createTime和updateTime。 
+- 加入 `EnumKit` 工具类，当数据库存枚举的ordinal时，方便获取枚举值
+- 修复wfinal-security accessFilter bug
+- 扩展wfinal-security 加入`@AccessPermissions`更加灵活控制权限
+- 扩展wfinal-security 加入全局AccessPermissions定义
 
 ### 2.1.5 update
 - 扩展 `wfinal-security`功能，加入`AccessFilter`功能，即过滤具体用的是否有权限访问此请求，具体使用方法可以参见[wfinal security使用说明](https://github.com/gefangshuai/wfinal-utilities/wiki/wfinal-security%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E)
