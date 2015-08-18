@@ -2,7 +2,6 @@ package io.github.gefangshuai.wfinal.security.core;
 
 import com.jfinal.core.Controller;
 
-import java.util.HashMap;
 import java.util.Map;
 
 /**
