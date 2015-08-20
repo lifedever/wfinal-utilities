@@ -28,7 +28,10 @@ public final class JfinalUTKit {
      * @return
      */
     public static File uploadAndRenameFile(String saveDir, UploadFile uploadFile) {
-        File desFile = new File(saveDir + "/" + System.nanoTime() + uploadFile.getFileName().substring(uploadFile.getFileName().lastIndexOf(".")));
+        File dir = new File(saveDir);
+        if (!dir.exists())
+            dir.mkdirs();
+        File desFile = new File(dir.getAbsolutePath() + "/" + System.nanoTime() + uploadFile.getFileName().substring(uploadFile.getFileName().lastIndexOf(".")));
         uploadFile.getFile().renameTo(desFile);
         return desFile;
     }

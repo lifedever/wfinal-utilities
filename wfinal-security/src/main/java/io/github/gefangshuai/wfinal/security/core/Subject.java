@@ -8,6 +8,7 @@ public class Subject<T> {
     private T t;    // 登录信息
     private boolean login = false;    // 是否登录
     private String[] permissions;            // 与权限相关的Role
+    private String homeUrl = "/";             // 当前用户的主页
     public boolean isLogin() {
         return login;
     }
@@ -36,6 +37,13 @@ public class Subject<T> {
         this.login = login;
     }
 
+    public Subject(T t, boolean login, String[] permissions, String homeUrl) {
+        this.t = t;
+        this.login = login;
+        this.permissions = permissions;
+        this.homeUrl = homeUrl;
+    }
+
     public Subject(T t) {
         this.t = t;
         if (t != null)
@@ -44,5 +52,13 @@ public class Subject<T> {
 
     public T get() {
         return t;
+    }
+
+    public String getHomeUrl() {
+        return homeUrl;
+    }
+
+    public void setHomeUrl(String homeUrl) {
+        this.homeUrl = homeUrl;
     }
 }
