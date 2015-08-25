@@ -48,6 +48,14 @@ public class SecurityKit {
         return subject;
     }
 
+    /**
+     * 获取登录用户信息
+     */
+    public static <T> Subject<T> getSubject(Controller controller, Class<T> clazz) {
+        Subject<T> subject = getSubject(controller);
+        return subject;
+    }
+
     public static String getUrlBeforeLogin(Controller controller) {
         String urlBeforeLogin = controller.getSessionAttr(SecurityConst.SECURITY_SESSION_URL_BEFORE_LOGIN);
         if (StringUtils.isBlank(urlBeforeLogin))
