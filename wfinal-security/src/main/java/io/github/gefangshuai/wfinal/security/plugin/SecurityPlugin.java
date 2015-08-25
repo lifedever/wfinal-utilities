@@ -28,6 +28,9 @@ public class SecurityPlugin implements IPlugin {
     @Override
     public boolean start() {
         log.debug("----init Security Plugin!----");
+        log.debug("----Security Rule: ----------");
+        log.debug("----subject key: " + securityRule.getSubjectKey());
+        log.debug("----login url: " + securityRule.getLoginUrl());
         JfinalKit.getInterceptors().addGlobalActionInterceptor(new SecurityInterceptor());
         return true;
     }

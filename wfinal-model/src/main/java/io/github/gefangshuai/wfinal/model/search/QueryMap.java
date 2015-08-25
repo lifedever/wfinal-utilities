@@ -17,6 +17,11 @@ public class QueryMap {
     private List<QueryParam> queryParams = new ArrayList<>();
     private List<Link> links = new ArrayList<>();
 
+    public QueryMap(String column, Operator operator, Object value) {
+        QueryParam queryParam = new QueryParam(column, operator, value);
+        this.and(queryParam);
+    }
+
     public QueryMap(QueryParam queryParam) {
         this.and(queryParam);
     }

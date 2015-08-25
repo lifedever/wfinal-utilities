@@ -28,10 +28,9 @@ public class WModel<M extends Model> extends Model<M> {
         return get("id");
     }
 
-    public  M setId(Object id) {
+    public M setId(Object id) {
         return set("id", id);
     }
-
 
     public <E extends Enum<E>> E getEnum(final Class<E> enumClass, String attrName) {
         return EnumKit.getEnum(enumClass, getInt(attrName));
