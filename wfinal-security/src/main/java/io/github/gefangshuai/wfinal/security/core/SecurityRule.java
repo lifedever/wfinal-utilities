@@ -13,6 +13,7 @@ public class SecurityRule {
     private String loginUrl;    // 登录url
     private boolean backToLoginPage = false;    // 登录失败是否跳转回登陆页面
     private boolean useAccessActionFilter = false;  // 是否启用用户请求拦截
+    private String[] noRedirectUrls;    // 排除登录成功，不进行重定向的地址
     private Map<String, Class<? extends Controller>[]> accessPermissionMap;     // 特定权限对应的请求地址前缀，如: <code>accessPermissionMap.put("admin", new Controller[]{UserController.class, BookController.class})</code>
     private String subjectKey = SecurityConst.SECURITY_SESSION_SUBJECT_KEY;     // 前台获取登录信息的key
 
@@ -89,5 +90,17 @@ public class SecurityRule {
      */
     public void setAccessPermissionMap(Map<String, Class<? extends Controller>[]> accessPermissionMap) {
         this.accessPermissionMap = accessPermissionMap;
+    }
+
+    public String[] getNoRedirectUrls() {
+        return noRedirectUrls;
+    }
+
+    /**
+     * 排除登录成功，不重定向的地址
+     * @param noRedirectUrls
+     */
+    public void setNoRedirectUrls(String[] noRedirectUrls) {
+        this.noRedirectUrls = noRedirectUrls;
     }
 }

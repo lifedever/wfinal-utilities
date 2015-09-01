@@ -2,6 +2,8 @@ package io.github.gefangshuai.wfinal.security.core;
 
 import com.google.gson.Gson;
 import com.jfinal.core.Controller;
+import com.jfinal.ext.kit.JfinalKit;
+import io.github.gefangshuai.wfinal.security.plugin.SecurityPlugin;
 import io.github.gefangshuai.wfinal.security.proxy.LoginValidateProxy;
 import org.apache.commons.lang3.StringUtils;
 
@@ -58,8 +60,16 @@ public class SecurityKit {
 
     public static String getUrlBeforeLogin(Controller controller) {
         String urlBeforeLogin = controller.getSessionAttr(SecurityConst.SECURITY_SESSION_URL_BEFORE_LOGIN);
+        SecurityPlugin securityPlugin = (SecurityPlugin) JfinalKit.findPlugin(SecurityPlugin.class).get(0);
+        SecurityRule securityRule = securityPlugin.getSecurityRule();
         if (StringUtils.isBlank(urlBeforeLogin))
             return "";
+        if (securityRule.getNoRedirectUrls() != null) {
+            for (String url : securityRule.getNoRedirectUrls()) {
+                if (StringUtils.startsWithIgnoreCase(urlBeforeLogin, url))
+                    return "";
+            }
+        }
         return urlBeforeLogin;
     }
 
