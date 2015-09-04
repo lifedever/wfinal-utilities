@@ -60,14 +60,16 @@ public class SecurityKit {
 
     public static String getUrlBeforeLogin(Controller controller) {
         String urlBeforeLogin = controller.getSessionAttr(SecurityConst.SECURITY_SESSION_URL_BEFORE_LOGIN);
+        Subject subject = getSubject(controller);
         SecurityPlugin securityPlugin = (SecurityPlugin) JfinalKit.findPlugin(SecurityPlugin.class).get(0);
         SecurityRule securityRule = securityPlugin.getSecurityRule();
+        String homeUrl = subject == null? "":subject.getHomeUrl();
         if (StringUtils.isBlank(urlBeforeLogin))
-            return "";
+            return homeUrl;
         if (securityRule.getNoRedirectUrls() != null) {
             for (String url : securityRule.getNoRedirectUrls()) {
                 if (StringUtils.startsWithIgnoreCase(urlBeforeLogin, url))
-                    return "";
+                    return homeUrl;
             }
         }
         return urlBeforeLogin;
