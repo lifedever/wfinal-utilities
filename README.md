@@ -1,3 +1,6 @@
+# 需要详细说明文档吗？
+其实框架源码很简单，基本上看一下wiki然后结合源码就可以写出东西来了，如果您真的想快速入门，需要开发说明文档的话，请[给我留言](http://wincn.net/wfinal-utilities),有需求的话我会整理一份详细文档出来!
+
 # 介绍
 ~~`wfinal-utilities` 是基于jfinal极速开发框架的一个扩展，集成了`jfinal`相关依赖、`druid`连接池、`wincn-commons工具类集合`、`servlet-api`及`jstl`，所以引用此扩展后不需要在额外引入上述依赖。本扩展会同步保持jfinal最新版，体验极速开发最新特性！~~
 
