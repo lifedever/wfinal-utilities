@@ -31,40 +31,7 @@ Follow on [trello](https://trello.com/c/2w0GnVut/10--)
 
 # 更新说明
 
-### 2.1.6 update
-- wfinal-model 插件加入`getEnum()`方法，用来直接获取数据库数值对应的枚举对象
-- wfinal-model 插件中加入`findOne(QueryMap)`通用查询，支持查询一条记录
-- wfinal-model 插件扩展saveOrUpdate支持自动插入createTime和updateTime。 
-- 加入 `EnumKit` 工具类，当数据库存枚举的ordinal时，方便获取枚举值
-- 修复wfinal-security accessFilter bug
-- 扩展wfinal-security 加入`@AccessPermissions`更加灵活控制权限
-- 扩展wfinal-security 加入全局AccessPermissions定义
-
-### 2.1.5 update
-- 扩展 `wfinal-security`功能，加入`AccessFilter`功能，即过滤具体用的是否有权限访问此请求，具体使用方法可以参见[wfinal security使用说明](https://github.com/gefangshuai/wfinal-utilities/wiki/wfinal-security%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E)
-
-### 2.1.4 update
-- 完成`wfinal-security`所有功能的扩展，具体使用方法可以参见[wfinal security使用说明](https://github.com/gefangshuai/wfinal-utilities/wiki/wfinal-security%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E)
-- 修复没有加`@RequireLogin`注解导致`subjectKey`没有传入到前台的BUG
-- 去掉`MenumapperInterceptor` 和 `SecurityInterceptor` 两个Interceptor的配置，改为插件中动态配置，不需要再人工引入，这样就可以集成框架的时候少写两个拦截器
-
-### 2.1.3 update
-* 加入`wfinal-security`安全验证模块，实现了登录验证功能托管，具体使用方法请参考[wfinal security使用说明](https://github.com/gefangshuai/wfinal-utilities/wiki/wfinal-security%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E)（未完成，查看进度请关注：[trello progress](https://trello.com/c/uLAtEEjG/5--)）
-* 重构menumapper模块，删除没用的注解扫描过程
-* 改进WModel中获取数据表信息的方式, 改为jfinal的方式获取，节省效率
-```java
-Table table = TableMapping.me().getTable(getClass());
-```
-* 其他已知bug修复
-
-### 2.1.2 update
-##### 扩展FlashMessageUtils方法，将redirect功能继承到FlashMessageUtils中。
-
-虽然这个改进看似简单，却能将原来的两行代码缩少为一行！（掌声~~ -_-！），使用放法：
-```java
-FlashMessageUtils.redirectSuccessMessage(this, "/signin", "退出成功！");
-```
-其他方法可以直接查看源码即可。
+[见这里](https://github.com/gefangshuai/wfinal-utilities/wiki#%E6%9B%B4%E6%96%B0%E8%AF%B4%E6%98%8E)
 
 # Thanks
 - java: 1.7+
