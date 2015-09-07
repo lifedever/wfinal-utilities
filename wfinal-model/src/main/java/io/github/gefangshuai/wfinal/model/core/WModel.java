@@ -18,6 +18,15 @@ import java.util.List;
  * Created by gefangshuai on 2015/7/7.
  */
 public class WModel<M extends Model> extends Model<M> {
+    private String getIdColumn() {
+
+        Table table = TableMapping.me().getTable(getClass());
+        if (table.getPrimaryKey() != null) {
+            return table.getPrimaryKey()[0];
+        } else {
+            return null;
+        }
+    }
 
     /**
      * 默认获得ID
@@ -25,11 +34,11 @@ public class WModel<M extends Model> extends Model<M> {
      * @return
      */
     public Integer getId() {
-        return get("id");
+        return get(getIdColumn());
     }
 
     public M setId(Object id) {
-        return set("id", id);
+        return set(getIdColumn(), id);
     }
 
     public <E extends Enum<E>> E getEnum(final Class<E> enumClass, String attrName) {
@@ -179,6 +188,4 @@ public class WModel<M extends Model> extends Model<M> {
     public Page<M> pageRecord(PageRequest pageRequest, String select, String sqlExceptSelect, Object... paras) {
         return paginate(pageRequest.getPageNumber(), pageRequest.getPageSize(), select, sqlExceptSelect, paras);
     }
-
-
 }
