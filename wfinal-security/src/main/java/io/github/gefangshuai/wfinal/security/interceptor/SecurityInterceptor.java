@@ -57,6 +57,7 @@ public class SecurityInterceptor implements Interceptor {
 
         if (subject.isLogin() && securityRule.isUseAccessActionFilter()) {
             if (!accessActionCheck(inv)) {
+                controller.setAttr("forbid_url", inv.getActionKey());
                 controller.renderError(403);
             }
         }

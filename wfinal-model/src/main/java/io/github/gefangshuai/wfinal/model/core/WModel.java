@@ -142,14 +142,14 @@ public class WModel<M extends Model> extends Model<M> {
     /**
      * 查询所有记录，带排序
      */
-    public List<M> findAll(Sort sort) {
+    public List<M> findAll(Sort... sort) {
         return find(new QueryMap(null).getQuerySql(this, sort));
     }
 
     /**
      * 查询所有记录，带排序
      */
-    public List<M> findAll(QueryMap queryMap, Sort sort) {
+    public List<M> findAll(QueryMap queryMap, Sort... sort) {
         return find(queryMap.getQuerySql(this, sort), queryMap.getParas());
     }
 
@@ -164,7 +164,7 @@ public class WModel<M extends Model> extends Model<M> {
     /**
      * 分页查询所有记录，带排序
      */
-    public Page<M> pageRecord(PageRequest pageRequest, Sort sort) {
+    public Page<M> pageRecord(PageRequest pageRequest, Sort... sort) {
         return paginate(pageRequest.getPageNumber(), pageRequest.getPageSize(), "select * ", new QueryMap(null).getSqlExceptSelect(null, this, sort));
     }
 
@@ -178,7 +178,7 @@ public class WModel<M extends Model> extends Model<M> {
     /**
      * 分页查询记录，带排序
      */
-    public Page<M> pageRecord(PageRequest pageRequest, QueryMap queryMap, Sort sort) {
+    public Page<M> pageRecord(PageRequest pageRequest, QueryMap queryMap, Sort... sort) {
         return paginate(pageRequest.getPageNumber(), pageRequest.getPageSize(), "select * ", queryMap.getSqlExceptSelect(null, this, sort), queryMap.getParas());
     }
 

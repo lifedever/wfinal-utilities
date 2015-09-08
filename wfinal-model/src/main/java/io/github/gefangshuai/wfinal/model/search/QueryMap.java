@@ -30,7 +30,7 @@ public class QueryMap {
      * and 连接查询
      */
     public QueryMap and(QueryParam queryParam) {
-        if(queryParam != null) {
+        if (queryParam != null) {
             queryParams.add(queryParam);
             links.add(Link.AND);
         }
@@ -51,7 +51,7 @@ public class QueryMap {
      * or 连接查询
      */
     public QueryMap or(QueryParam queryParam) {
-        if(queryParam != null) {
+        if (queryParam != null) {
             queryParams.add(queryParam);
             links.add(Link.OR);
         }
@@ -80,7 +80,7 @@ public class QueryMap {
         return sql;
     }
 
-    public String getQuerySql(WModel model, Sort sort) {
+    public String getQuerySql(WModel model, Sort... sort) {
         String sql = appendSort(getQuerySql(model), sort);
         logger.debug("query sql: " + sql);
         return sql;
@@ -107,7 +107,7 @@ public class QueryMap {
         return sb.toString();
     }
 
-    public String getSqlExceptSelect(String select, WModel model, Sort sort) {
+    public String getSqlExceptSelect(String select, WModel model, Sort... sort) {
         String sql = appendSort(getSqlExceptSelect(select, model), sort);
         logger.debug("query sql: " + sql);
         return sql;
@@ -127,7 +127,14 @@ public class QueryMap {
     }
 
     /* private method below */
-    private String appendSort(String sql, Sort sort) {
-        return sql + " order by " + sort.getColumnName() + " " + sort.getDirection().getDirection();
+    private String appendSort(String sql, Sort... sort) {
+        StringBuilder sb = new StringBuilder(sql + " order by ");
+        for (Sort s : sort) {
+            sb.append(s.getColumnName() + " " + s.getDirection().getDirection());
+            sb.append(", ");
+        }
+        sb.deleteCharAt(sb.lastIndexOf(","));
+        return sb.toString();
     }
+
 }
